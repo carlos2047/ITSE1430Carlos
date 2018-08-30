@@ -10,8 +10,12 @@ namespace Section_1
     {
         static void Main( string[] args )
         {
-            //DisplayMenu();
-            PlayWithStrings();
+            bool notQuit;
+            do
+            {
+                notQuit = DisplayMenu();
+            } while (notQuit);
+            //PlayWithStrings();
         }
 
         private static void PlayWithStrings()
@@ -39,10 +43,52 @@ namespace Section_1
             string firstName = "Bob";
             string lastName = "Smith";
             string name = firstName + " " + lastName;
+
+            //strings are immutable, below will create new strings
+            //name = "Hello " + name;
+            Console.WriteLine("Hello " + name);// approach 1
+            Console.WriteLine("Hello {0} {1}", firstName, lastName); //approach 2
+            string str = String.Format("Hello {0} {1}", firstName, lastName); // approach 3
+            Console.WriteLine(str);
+
+            //approach 4
+            Console.WriteLine($"Hello {firstName} {lastName}");
+
+            //null vs empty
+            string missing = null;
+            string empty = "";
+            string empty2 = String.Empty;
+            
+            //checking for empty strings
+            //if (firstName.Length == 0)
+            //if(firstName != null && firstName != "")
+            if (!String.IsNullOrEmpty(firstName))
+                Console.WriteLine(firstName);
+
+            //other stuff
+            string upperName = firstName.ToUpper();
+            string lowerName = firstName.ToLower();
+
+            //comparison
+            bool areEqual = firstName == lastName;
+            areEqual = firstName.ToLower() == lastName.ToLower();
+            areEqual = String.Compare(firstName, lastName, true) == 0; //case insensitive set 3rd parameter to false or blank for case sensitive
+
+            bool startsWithA = firstName.StartsWith("A");
+            bool endsWithA = firstName.EndsWith("A");
+            bool hasA = firstName.IndexOf("A") >= 0;
+            string subset = firstName.Substring(4);
+
+            // clean up
+            string cleanMe = firstName.Trim(); // TrimStart, TrimEnd
+            string makeLonger = firstName.PadLeft(20); //PadRight
+
         }
 
-        private static void DisplayMenu()
+        private static bool DisplayMenu()
         {
+            while (true)
+            { 
             Console.WriteLine("A)dd Movie");
             Console.WriteLine("E)dit Movie");
             Console.WriteLine("D)elete Movie");
@@ -50,37 +96,44 @@ namespace Section_1
             Console.WriteLine("Q)uit");
 
             string input = Console.ReadLine();
-            switch (input[0])
-            {
-                case 'A': AddMovie(); break;
-                case 'E': EditMovie(); break;
-                case 'D': DeleteMovie(); break;
-                case 'V': ViewMovie(); break;
-                case 'Q': ; break;
+                switch (input[0])
+                {
+                    case 'a':
+                    case 'A': AddMovie(); return true;
+                    case 'e':
+                    case 'E': EditMovie(); return true;
+                    case 'd':
+                    case 'D': DeleteMovie(); return true;
+                    case 'v':
+                    case 'V': ViewMovie(); return true;
+                    case 'q':
+                    case 'Q': return false;
 
-                default: Console.WriteLine("Please enter a valid value."); break;
-                ;
+                    default:
+                         Console.WriteLine("Please enter a valid value.\n"); break;
+                    ;
+                };
             };
         }
 
         private static void ViewMovie()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("View Movie\n");
         }
 
         private static void DeleteMovie()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Delete Movie\n");
         }
 
         private static void EditMovie()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Edit Movie\n");
         }
 
         private static void AddMovie()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Add Movie\n");
         }
     }
 }
