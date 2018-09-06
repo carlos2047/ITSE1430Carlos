@@ -51,7 +51,7 @@ namespace Section_1
             string str = String.Format("Hello {0} {1}", firstName, lastName); // approach 3
             Console.WriteLine(str);
 
-            //approach 4
+            //string interpulation approach 4
             Console.WriteLine($"Hello {firstName} {lastName}");
 
             //null vs empty
@@ -83,6 +83,28 @@ namespace Section_1
             string cleanMe = firstName.Trim(); // TrimStart, TrimEnd
             string makeLonger = firstName.PadLeft(20); //PadRight
 
+        }
+
+        private static void PlayWithArrays()
+        {
+            int count = ReadInt32("How many names? ", 1);
+            string[] names = new string[count];
+            for (int index = 0; index < count; ++index)
+            {
+                Console.WriteLine("Name? ");
+                names[index] = Console.ReadLine();
+            }
+
+            //for (int index = 0; index < names.Length; ++index)
+            foreach(string name in names)
+            {
+                //readonly - not allowed
+                //nname = "";
+                string str = name;
+                str = "";
+                //Console.WriteLine(names[index]);
+                Console.WriteLine(name);
+            };
         }
 
         private static bool DisplayMenu()
@@ -133,7 +155,50 @@ namespace Section_1
 
         private static void AddMovie()
         {
-            Console.WriteLine("Add Movie\n");
+           name = ReadString("Enter a name: ", true);
+           description = ReadString("Enter a description: ");
+           runLength = ReadInt32("Enter the run length (in minutes): ", 0);
+
         }
+        private static int ReadInt32( string message, int minValue )
+        {
+            while (true)
+            {
+                Console.WriteLine(message);
+                string input = Console.ReadLine();
+
+                if (Int32.TryParse(input, out int result))
+                {
+                    if (result >= minValue)
+                        return result;
+                };
+
+                Console.WriteLine($"You must enter an integer value >= {minValue}");
+            };
+        }
+        private static string ReadString (string message)
+        {
+            return ReadString(message, false);
+        }
+        private static string ReadString( string message, bool required)
+        {
+            while(true)
+            {
+                Console.WriteLine(message);
+                string input = Console.ReadLine();
+
+                if(!String.IsNullOrEmpty(input) || !required)
+                    return input;
+
+                Console.WriteLine("You must enter a value. ");
+            };
+        }
+        
+        //A movie
+        static string name;
+        static string description;
+        static int runLength;
+        static DateTime releaseDate;
     }
+    
 }
