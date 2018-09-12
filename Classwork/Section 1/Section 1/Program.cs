@@ -17,7 +17,57 @@ namespace Section_1
             } while (notQuit);
             //PlayWithStrings();
         }
+        private static void PlayWithObjects ()
+        {
+            int hours = 10;
+            Int32 hoursFull = 10;
+            var areEqual = hours == hoursFull;
 
+            DisplayObject("Hello");
+            var obj1 = "Hello";    
+            DisplayObject(obj1);
+        }
+        private static void DisplayObject (object value)
+        {
+            if (value == null)
+                return;
+            //approach 1
+            if (value is string)
+            {
+                var str = (string)value;
+                Console.WriteLine(str);
+            } else
+            {
+                var str = value.ToString();
+                Console.WriteLine(str);
+            }
+
+            //approach 2
+            var str2 = value as string;
+            if (str2 != null)
+                Console.WriteLine(str2);
+            else
+                Console.WriteLine(value.ToString());
+
+            //approach 3
+            var str3 = value as string;
+            Console.WriteLine((str3 != null) ? str3.ToString() : value.ToString());
+
+            //approach 4
+            var str4 = value as string;
+            Console.WriteLine((str4 ?? value).ToString());
+
+            //approach 5**
+            //var str5 = value is string;
+            if (value is string str5)
+                Console.WriteLine(str5.ToString());
+            else
+                Console.WriteLine(value.ToString());
+
+            //approach 6
+            var str6 = value as string;
+            Console.WriteLine(str6?.ToString());
+        }
         private static void PlayWithStrings()
         {
             string hoursString = "10";
@@ -140,17 +190,65 @@ namespace Section_1
 
         private static void ViewMovie()
         {
-            Console.WriteLine("View Movie\n");
+            Console.WriteLine("ViewMovies");
+            if (String.IsNullOrEmpty(name))
+            {
+                Console.WriteLine("No movies available");
+                return;
+            };
+            Console.WriteLine(name);
+            if (!String.IsNullOrEmpty(description))
+                Console.WriteLine(description);
+            //Console.WriteLine("Run length (mins) = " + runLength);
+            Console.WriteLine($"Run length = {runLength} mins");
         }
 
         private static void DeleteMovie()
         {
-            Console.WriteLine("Delete Movie\n");
+            Console.WriteLine("DeleteMovie");
+            if (Confirm("Are you sure you want to delete this movie?"))
+            {
+                //"Delete" the movie
+                name = null;
+                description = null;
+                runLength = 0;
+            };
+        }
+        private static bool Confirm( string message )
+        {
+            Console.WriteLine($"{message} (Y/N)");
+            do
+            {
+                ConsoleKeyInfo key = Console.ReadKey(true);
+                switch (key.KeyChar)
+                {
+                    case 'Y':
+                    case 'y':
+                    return true;
+                    case 'N':
+                    case 'n':
+                    return false;
+                };
+            } while (true);
+            //if (key.KeyChar == 'Y')
+            //    return true;
+            //else if (key.KeyChar == 'N')
+            //    return false;
         }
 
         private static void EditMovie()
         {
-            Console.WriteLine("Edit Movie\n");
+            Console.WriteLine("EditMovie");
+            ViewMovie();
+            var newName = ReadString("Enter a name (or press ENTER for default): ", false);
+            if (!String.IsNullOrEmpty(newName))
+                name = newName;
+            var newDescription = ReadString("Enter a description (or press ENTER for default): ");
+            if (!String.IsNullOrEmpty(newDescription))
+                description = newDescription;
+            var newLength = ReadInt32("Enter run length (in minutes): ", 0);
+            if (newLength > 0)
+                runLength = newLength;
         }
 
         private static void AddMovie()
@@ -167,6 +265,7 @@ namespace Section_1
                 Console.WriteLine(message);
                 string input = Console.ReadLine();
 
+                //Int.TryParse();
                 if (Int32.TryParse(input, out int result))
                 {
                     if (result >= minValue)
