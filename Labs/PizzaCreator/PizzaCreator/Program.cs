@@ -56,19 +56,24 @@ namespace PizzaCreator
 
         private static void NewOrder()
         {
-            size = Size("What size did you want? S)mall ($5.00), M)edium ($6.25), L)arge ($8.75)", true);
-            meats = Meats("What meats did you want? 1)Bacon ($0.75), 2)Ham ($0.75), 3)Pepperoni ($0.75), 4)Sausage ($0.75)", true);
-            vegetables = Vegetables("What vegetables did you want? 1)Black Olives ($0.50), 2)Mushrooms ($0.50), 3)Onions ($0.50), 4)Peppers ($0.50)", true);
-            sauce = Sauce("What sauce did you want? 1)Traditional ($0.00), 2)Garlic ($1.00), 3)Oregano ($1.00)", true);
-            cheese = Cheese("What cheese did you want? 1)Regular ($0.00), 2)Extra ($1.25)", true);
-            delivery = Delivery("Did you want it delivered or take out? 1)Take Out ($0.00), 2)Delivered ($2.50)", true);
+            size = Size("What size did you want? \nS)mall ($5.00)\nM)edium ($6.25)\nL)arge ($8.75)", true);
+            meats = Meats("What meats did you want? \nB)acon ($0.75)\nH)am ($0.75)\nP)epperoni ($0.75)\nS)ausage ($0.75)", false);
+            vegetables = Vegetables("What vegetables did you want?\nB)lack Olives ($0.50)\nM)ushrooms ($0.50)\nO)nions ($0.50)\nP)eppers ($0.50)", false);
+            sauce = Sauce("What sauce did you want?\nT)raditional ($0.00)\nG)arlic ($1.00)\nO)regano ($1.00)", true);
+            cheese = Cheese("What cheese did you want?\nR)egular ($0.00)\nE)xtra ($1.25)", true);
+            delivery = Delivery("Did you want it delivered or take out?\nT)ake Out ($0.00)\nD)elivered ($2.50)", true);
 
             DisplayOrder();
         }
 
         private static void ModifyOrder()
         {
-            DisplayOrder();
+                       if (String.IsNullOrEmpty(size))
+            {
+                Console.WriteLine("No order placed");
+                return;
+            }
+                       DisplayOrder();
 
             var newSize = Size("Enter a size (or press ENTER for default): ", false);
             if (!String.IsNullOrEmpty(newSize))
@@ -127,6 +132,24 @@ namespace PizzaCreator
             {
                 Console.WriteLine(message);
                 string input = Console.ReadLine();
+                switch (input)
+                {
+                    case "s":
+                    case "S": "Small";
+                        break;
+
+                    case "m":
+                    case "M": "Medium";
+                        break;
+
+                    case "l":
+                    case "L": "Large";
+                        break;
+
+                    default:
+                        Console.WriteLine("Please enter a valid choice.\n");
+                        break;
+                };
 
                 if (!String.IsNullOrEmpty(input) || !required)
                     return input;
