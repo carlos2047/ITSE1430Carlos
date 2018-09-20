@@ -8,232 +8,367 @@ namespace PizzaCreator
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main( string[] args )
         {
             bool notQuit;
             do
             {
                 notQuit = DisplayMenu();
-            }
-            while (notQuit);
+            } while (notQuit);
         }
 
         private static bool DisplayMenu()
         {
             while (true)
             {
-                Console.WriteLine("N)ew Order");
-                Console.WriteLine("M)odify Order");
+                Console.WriteLine("Current Cart: $"+ CalculateTotal());
+                Console.WriteLine("N)ew Order ");
+                Console.WriteLine("M)odify Order ");
                 Console.WriteLine("D)isplay Order");
-                Console.WriteLine("Q)uit");
+                Console.WriteLine("Q)uit ");
 
                 string input = Console.ReadLine();
-                switch (input)
+                switch (input[0])
                 {
-                    case "n":
-                    case "N": NewOrder();
-                        break;
+                    case 'n':
+                    case 'N': NewOrder(); return true;
 
-                    case "m":
-                    case "M": ModifyOrder();
-                        break;
+                    case 'm':
+                    case 'M': ModifyOrder(); return true;
 
-                    case "d":
-                    case "D": DisplayOrder();
-                        break;
+                    case 'd':
+                    case 'D': DisplayOrder(); return true;
 
-                    case "q":
-                    case "Q": return false;
+                    case 'q':
+                    case 'Q': return false;
 
-                    default:
-                        Console.WriteLine("Please enter a valid value.\n");
-                        break;
-                };
-                Console.WriteLine("\n-------------------\n");
+                    default: Console.WriteLine("Please enter a valid value."); break;
+
+                }
             };
-
         }
 
         private static void NewOrder()
         {
-            size = Size("What size did you want? \nS)mall ($5.00)\nM)edium ($6.25)\nL)arge ($8.75)", true);
-            meats = Meats("What meats did you want? \nB)acon ($0.75)\nH)am ($0.75)\nP)epperoni ($0.75)\nS)ausage ($0.75)", false);
-            vegetables = Vegetables("What vegetables did you want?\nB)lack Olives ($0.50)\nM)ushrooms ($0.50)\nO)nions ($0.50)\nP)eppers ($0.50)", false);
-            sauce = Sauce("What sauce did you want?\nT)raditional ($0.00)\nG)arlic ($1.00)\nO)regano ($1.00)", true);
-            cheese = Cheese("What cheese did you want?\nR)egular ($0.00)\nE)xtra ($1.25)", true);
-            delivery = Delivery("Did you want it delivered or take out?\nT)ake Out ($0.00)\nD)elivered ($2.50)", true);
+            Size();
+            Meat();
+            Veggies();
+            Sauce();
+            Cheese();
+            Delivery();
+            DisplayOrder();            
+        }
 
-            DisplayOrder();
+        private static void Size()
+        {
+            Console.WriteLine("Size (one required).");
+            Console.WriteLine("\t1. Small ($5) {0}", size == 1 ? "Selected": " ");
+            Console.WriteLine("\t2. Medium ($6.25) {0}", size  == 2 ? "Selected" : " ");
+            Console.WriteLine("\t3. Large ($8.25) {0}", size == 3 ? "Selected" : " ");
+            size = ReadInt32(1, 3);
+            orderExists = true;
+
+        }
+
+        private static int ReadInt32( int minValue, int maxValue )
+        {
+            while (true)
+            {
+
+                var input = Console.ReadLine();
+
+                if (Int32.TryParse(input, out var result))
+                {
+                    if (result >= minValue && result <= maxValue)
+                        return result;
+                };
+
+                Console.WriteLine($"You must enter a valid option >= {minValue}");
+            };
+        }
+
+        private static void Meat()
+        {
+            while (true)
+            {
+                Console.WriteLine("Meats (zero or more). Each option is $0.75 extra.");
+                Console.WriteLine("\t1. Bacon");
+                Console.WriteLine("\t2. Ham");
+                Console.WriteLine("\t3. Pepperoni");
+                Console.WriteLine("\t4. Sausage");
+                Console.WriteLine("\t5. Done");
+
+
+                var meat = ReadInt32(1, 5);
+                switch (meat)
+                {
+                    case 1:
+                    bacon = !bacon;
+                    break;
+
+                    case 2:
+                    ham = !ham;
+                    break;
+
+                    case 3:
+                    pepperoni = !pepperoni;
+                    break;
+
+                    case 4:
+                    sausage = !sausage;
+                    break;
+
+                    case 5: return;
+
+                }
+
+            }
+        }
+
+        private static void Veggies()
+        {
+            while (true)
+            {
+                Console.WriteLine("Vegetables (zero or more). Each option is $0.50 extra.");
+                Console.WriteLine("\t1. Black olives");
+                Console.WriteLine("\t2. Mushrooms");
+                Console.WriteLine("\t3. Onions");
+                Console.WriteLine("\t4. Peppers");
+                Console.WriteLine("\t5. Done");
+
+
+                var temp = ReadInt32(1, 5);
+                switch (temp)
+                {
+                    case 1:
+                    blackOlives = !blackOlives;
+                    break;
+
+                    case 2:
+                    mushrooms = !mushrooms;
+                    break;
+
+                    case 3:
+                    onions = !onions;
+                    break;
+
+                    case 4:
+                    peppers = !peppers;
+                    break;
+
+                    case 5:
+                    return;
+
+                }
+
+            }
+        }
+
+        private static void Sauce()
+        {
+            Console.WriteLine("Sauce (one is required).");
+            Console.WriteLine("\t1. Traditional ($0) {0}", sauce == 1 ? "Selected" : " ");
+            Console.WriteLine("\t2. Garlic ($1) {0}", sauce == 2 ? "Selected" : " ");
+            Console.WriteLine("\t3. Oregano ($1) {0}", sauce == 1 ? "Selected" : " ");
+
+            sauce = ReadInt32(1, 3);
+
+        }
+
+        private static void Cheese()
+        {
+            Console.WriteLine("Cheese (one is required). ");
+            Console.WriteLine("\t1. Regular ($0) {0}", cheese == 1 ? "Selected" : " ");
+            Console.WriteLine("\t2. Extra (1.25) {0}", cheese == 2 ? "Selected" : " ");
+
+            cheese = ReadInt32(1, 2);
+
+        }
+
+        private static void Delivery()
+        {
+            Console.WriteLine("Delivery (one is required).");
+            Console.WriteLine("\t1. Take Out ($0) {0}", delivery == 1 ? "Selected" : " ");
+            Console.WriteLine("\t2. Delivery ($2.50) {0}", delivery == 2 ? "Selected" : " ");
+
+            delivery = ReadInt32(1, 2);
         }
 
         private static void ModifyOrder()
         {
-                       if (String.IsNullOrEmpty(size))
-            {
-                Console.WriteLine("No order placed");
-                return;
-            }
-                       DisplayOrder();
-
-            var newSize = Size("Enter a size (or press ENTER for default): ", false);
-            if (!String.IsNullOrEmpty(newSize))
-                size = newSize;
-
-            var newMeats = Meats("Enter type of meats (or press ENTER for default): ", false);
-            if (!String.IsNullOrEmpty(newMeats))
-                size = newMeats;
-
-            var newVegetables = Vegetables("Enter type of vegetables (or press ENTER for default): ", false);
-            if (!String.IsNullOrEmpty(newVegetables))
-                size = newVegetables;
-
-            var newSauce = Sauce("Enter a sauce (or press ENTER for default): ", false);
-            if (!String.IsNullOrEmpty(newSauce))
-                size = newSauce;
-
-            var newCheese = Cheese("Enter type of cheese (or press ENTER for default): ", false);
-            if (!String.IsNullOrEmpty(newCheese))
-                size = newCheese;
-
-            var newDelivery = Delivery("Enter a delivery option (or press ENTER for default): ", false);
-            if (!String.IsNullOrEmpty(newDelivery))
-                size = newDelivery;
+            if (!orderExists)
+                {
+                 Console.WriteLine("No order exists!");
+                }
+            else
+            NewOrder();
         }
 
         private static void DisplayOrder()
         {
-            if (String.IsNullOrEmpty(size))
+            if (!orderExists)
+                {
+                 Console.WriteLine("No order exists!");
+                }
+            else
+                {
+                Console.WriteLine("\tHere is your order\n");
+                switch (size)
+                    {
+                    case 1:
+                        Console.WriteLine("\tSmall Pizza \t\t$5.00");
+                        break;
+
+                        case 2:
+                        Console.WriteLine("\tMedium Pizza\t\t$6.25");
+                        break;
+
+                        case 3:
+                        Console.WriteLine("\tLarge Pizza \t\t$8.25");
+                        break;
+                    }
+                
+            switch (delivery)
             {
-                Console.WriteLine("No order placed");
-                return;
+                case 1:
+                Console.WriteLine("\tTake Out");
+                break;
+
+                case 2:
+                Console.WriteLine("\tDelivery    \t\t$2.50");
+                break;
+            }
+            
+            Console.WriteLine("\tMeats");
+            if (bacon)
+                Console.WriteLine("\t\tBacon       \t$0.75");
+            if (ham)
+                Console.WriteLine("\t\tHam         \t$0.75");
+            if (pepperoni)
+                Console.WriteLine("\t\tPepperoni   \t$0.75");
+            if(sausage)
+                Console.WriteLine("\t\tSausage     \t$0.75");
+            Console.WriteLine("\tVegetables");
+
+            if (blackOlives)
+                Console.WriteLine("\t\tBlack Olives\t$0.50");
+            if (mushrooms)
+                Console.WriteLine("\t\tMushrooms   \t$0.50");
+            if (onions)
+                Console.WriteLine("\t\tOnions      \t$0.50");
+            if (peppers)
+                Console.WriteLine("\t\tPeppers     \t$0.50");
+
+            Console.WriteLine("\tSauce");
+
+            switch (sauce)
+            {
+                case 1:
+                Console.WriteLine("\t\tTraditional");
+                break;
+
+                case 2:
+                Console.WriteLine("\t\tGarlic         $1.00");
+                break;
+
+                case 3:
+                Console.WriteLine("\t\tOregano        $1.00");
+                break;
+
             }
 
-            Console.WriteLine(size);
+            Console.WriteLine("\tCheese");
 
-            if (!String.IsNullOrEmpty(meats))
-                Console.WriteLine(meats);
-
-            if (!String.IsNullOrEmpty(vegetables))
-                Console.WriteLine(vegetables);
-
-            if (!String.IsNullOrEmpty(sauce))
-                Console.WriteLine(sauce);
-
-            if (!String.IsNullOrEmpty(cheese))
-                Console.WriteLine(cheese);
-
-            if (!String.IsNullOrEmpty(delivery))
-                Console.WriteLine(delivery);
-        }
-
-        private static string Size(string message, bool required)
-        {
-            while (true)
+            switch (cheese)
             {
-                Console.WriteLine(message);
-                string input = Console.ReadLine();
-                switch (input)
-                {
-                    case "s":
-                    case "S": "Small";
-                        break;
+                case 1:
+                Console.WriteLine("\t\tRegular");
+                break;
 
-                    case "m":
-                    case "M": "Medium";
-                        break;
+                case 2:
+                Console.WriteLine("\t\tExtra          \t$1.25");
+                break;
+            }
 
-                    case "l":
-                    case "L": "Large";
-                        break;
-
-                    default:
-                        Console.WriteLine("Please enter a valid choice.\n");
-                        break;
-                };
-
-                if (!String.IsNullOrEmpty(input) || !required)
-                    return input;
-
-                Console.WriteLine("You must enter a value.");
-            };
+            Console.WriteLine("\t______________________________");
+            Console.WriteLine("\tTotal       \t\t$" + CalculateTotal());            
+                }
         }
 
-        private static string Meats(string message, bool required)
+        private static decimal CalculateTotal()
         {
-            while (true)
-            {
-                Console.WriteLine(message);
-                string input = Console.ReadLine();
-
-                if (!String.IsNullOrEmpty(input) || !required)
-                    return input;
-
-                Console.WriteLine("You must enter a value.");
+            var vegetables = 0.50m;
+            var xMeats = 0.75m;
+            var price = 0m;
+            switch(size)
+            { 
+                case 1: price +=5;
+                break;
+                
+                case 2: price +=6.25m;
+                break;
+                 
+                case 3: price +=8.25m; break;
             };
-        }
 
-        private static string Vegetables(string message, bool required)
-        {
-            while (true)
+            if (bacon)
+                price += xMeats;
+            if (ham)
+                price += xMeats;
+            if (pepperoni)
+                price += xMeats;
+            if (sausage)
+                price += xMeats;
+            if (blackOlives)
+                price += vegetables;
+            if (mushrooms)
+                price += vegetables;
+            if (onions)
+                price += vegetables;
+            if (peppers)
+                price += vegetables;
+
+            switch (sauce)
             {
-                Console.WriteLine(message);
-                string input = Console.ReadLine();
+                case 1: price += 0;
+                
+                break;
 
-                if (!String.IsNullOrEmpty(input) || !required)
-                    return input;
+                case 2: price += 1m; break;
 
-                Console.WriteLine("You must enter a value.");
-            };
-        }
+                case 3: price += 1m; break;
 
-        private static string Sauce(string message, bool required)
-        {
-            while (true)
+            }
+
+            switch (cheese)
             {
-                Console.WriteLine(message);
-                string input = Console.ReadLine();
+                case 1: price += 0; break;
 
-                if (!String.IsNullOrEmpty(input) || !required)
-                    return input;
+                case 2: price += 1.25m; break;
 
-                Console.WriteLine("You must enter a value.");
-            };
-        }
+            }
 
-        private static string Cheese(string message, bool required)
-        {
-            while (true)
+            switch (delivery)
             {
-                Console.WriteLine(message);
-                string input = Console.ReadLine();
+                case 1: price += 0; break;
 
-                if (!String.IsNullOrEmpty(input) || !required)
-                    return input;
+                case 2: price += 2.50m; break;
+            }
 
-                Console.WriteLine("You must enter a value.");
-            };
+            return price;
         }
-
-        private static string Delivery(string message, bool required)
-        {
-            while (true)
-            {
-                Console.WriteLine(message);
-                string input = Console.ReadLine();
-
-                if (!String.IsNullOrEmpty(input) || !required)
-                    return input;
-
-                Console.WriteLine("You must enter a value.");
-            };
-        }
-
-        static string size;
-        static string meats;
-        static string vegetables;
-        static string sauce;
-        static string cheese;
-        static string delivery;
+        static int size;
+        static bool bacon;
+        static bool ham;
+        static bool pepperoni;
+        static bool sausage;
+        static bool blackOlives;
+        static bool mushrooms;
+        static bool onions;
+        static bool peppers;
+        static int sauce;
+        static int cheese;
+        static int delivery;
+        static bool orderExists = false;
     }
-
 }
