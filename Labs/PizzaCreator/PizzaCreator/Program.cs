@@ -22,25 +22,21 @@ namespace PizzaCreator
             while (true)
             {
                 Console.WriteLine("Current Cart: $"+ CalculateTotal());
-                Console.WriteLine("N)ew Order ");
-                Console.WriteLine("M)odify Order ");
-                Console.WriteLine("D)isplay Order");
-                Console.WriteLine("Q)uit ");
+                Console.WriteLine("\t1. New Order ");
+                Console.WriteLine("\t2. Modify Order ");
+                Console.WriteLine("\t3. Display Order");
+                Console.WriteLine("\t4. Quit ");
 
                 string input = Console.ReadLine();
                 switch (input[0])
                 {
-                    case 'n':
-                    case 'N': NewOrder(); return true;
+                    case '1': NewOrder(); return true;
 
-                    case 'm':
-                    case 'M': ModifyOrder(); return true;
+                    case '2': ModifyOrder(); return true;
 
-                    case 'd':
-                    case 'D': DisplayOrder(); return true;
+                    case '3': DisplayOrder(); return true;
 
-                    case 'q':
-                    case 'Q': return false;
+                    case '4': return false;
 
                     default: Console.WriteLine("Please enter a valid value."); break;
 
@@ -83,7 +79,7 @@ namespace PizzaCreator
                         return result;
                 };
 
-                Console.WriteLine($"You must enter a valid option >= {minValue}");
+                Console.WriteLine($"You must enter a valid option between {minValue} and {maxValue}");
             };
         }
 
@@ -91,15 +87,13 @@ namespace PizzaCreator
         {
             while (true)
             {
-                Console.WriteLine("Meats (zero or more). Each option is $0.75 extra.");
-                Console.WriteLine("\t1. Bacon");
-                Console.WriteLine("\t2. Ham");
-                Console.WriteLine("\t3. Pepperoni");
-                Console.WriteLine("\t4. Sausage");
+                Console.WriteLine("Meats (zero or more) Choose 5 when done adding meats.");
+                Console.WriteLine("\t1. Bacon (+$0.75) {0}", meat == 1 ? "Selected": " ");
+                Console.WriteLine("\t2. Ham(+$0.75) {0}", meat == 2 ? "Selected": " ");
+                Console.WriteLine("\t3. Pepperoni(+$0.75) {0}", meat == 3 ? "Selected": " ");
+                Console.WriteLine("\t4. Sausage(+$0.75) {0}", meat == 4 ? "Selected": " ");
                 Console.WriteLine("\t5. Done");
-
-
-                var meat = ReadInt32(1, 5);
+                meat = ReadInt32(1, 5);
                 switch (meat)
                 {
                     case 1:
@@ -129,16 +123,16 @@ namespace PizzaCreator
         {
             while (true)
             {
-                Console.WriteLine("Vegetables (zero or more). Each option is $0.50 extra.");
-                Console.WriteLine("\t1. Black olives");
-                Console.WriteLine("\t2. Mushrooms");
-                Console.WriteLine("\t3. Onions");
-                Console.WriteLine("\t4. Peppers");
+                Console.WriteLine("Veggies (zero or more) Choose 5 when done adding veggies.");
+                Console.WriteLine("\t1. Black olives (+$0.50) {0}", veggies == 1 ? "Selected": " ");
+                Console.WriteLine("\t2. Mushrooms (+$0.50) {0}", veggies == 2 ? "Selected": " ");
+                Console.WriteLine("\t3. Onions (+$0.50) {0}", veggies == 3 ? "Selected": " ");
+                Console.WriteLine("\t4. Peppers (+$0.50) {0}", veggies == 4 ? "Selected": " ");
                 Console.WriteLine("\t5. Done");
 
 
-                var temp = ReadInt32(1, 5);
-                switch (temp)
+                veggies = ReadInt32(1, 5);
+                switch (veggies)
                 {
                     case 1:
                     blackOlives = !blackOlives;
@@ -169,7 +163,7 @@ namespace PizzaCreator
             Console.WriteLine("Sauce (one is required).");
             Console.WriteLine("\t1. Traditional ($0) {0}", sauce == 1 ? "Selected" : " ");
             Console.WriteLine("\t2. Garlic ($1) {0}", sauce == 2 ? "Selected" : " ");
-            Console.WriteLine("\t3. Oregano ($1) {0}", sauce == 1 ? "Selected" : " ");
+            Console.WriteLine("\t3. Oregano ($1) {0}", sauce == 3 ? "Selected" : " ");
 
             sauce = ReadInt32(1, 3);
 
@@ -212,11 +206,11 @@ namespace PizzaCreator
                 }
             else
                 {
-                Console.WriteLine("\tHere is your order\n");
+                Console.WriteLine("\tYour Order\n");
                 switch (size)
                     {
                     case 1:
-                        Console.WriteLine("\tSmall Pizza \t\t$5.00");
+                        Console.WriteLine("\tSmall Pizza\t\t$5.00");
                         break;
 
                         case 2:
@@ -224,7 +218,7 @@ namespace PizzaCreator
                         break;
 
                         case 3:
-                        Console.WriteLine("\tLarge Pizza \t\t$8.25");
+                        Console.WriteLine("\tLarge Pizza\t\t$8.25");
                         break;
                     }
                 
@@ -235,44 +229,44 @@ namespace PizzaCreator
                 break;
 
                 case 2:
-                Console.WriteLine("\tDelivery    \t\t$2.50");
+                Console.WriteLine("\tDelivery\t\t$2.50");
                 break;
             }
             
             Console.WriteLine("\tMeats");
             if (bacon)
-                Console.WriteLine("\t\tBacon       \t$0.75");
+                Console.WriteLine("\t\t-Bacon\t\t$0.75");
             if (ham)
-                Console.WriteLine("\t\tHam         \t$0.75");
+                Console.WriteLine("\t\t-Ham\t\t$0.75");
             if (pepperoni)
-                Console.WriteLine("\t\tPepperoni   \t$0.75");
+                Console.WriteLine("\t\t-Pepperoni\t$0.75");
             if(sausage)
-                Console.WriteLine("\t\tSausage     \t$0.75");
-            Console.WriteLine("\tVegetables");
+                Console.WriteLine("\t\t-Sausage\t$0.75");
+            Console.WriteLine("\tVeggies");
 
             if (blackOlives)
-                Console.WriteLine("\t\tBlack Olives\t$0.50");
+                Console.WriteLine("\t\t-Black Olives\t$0.50");
             if (mushrooms)
-                Console.WriteLine("\t\tMushrooms   \t$0.50");
+                Console.WriteLine("\t\t-Mushrooms\t$0.50");
             if (onions)
-                Console.WriteLine("\t\tOnions      \t$0.50");
+                Console.WriteLine("\t\t-Onions\t\t$0.50");
             if (peppers)
-                Console.WriteLine("\t\tPeppers     \t$0.50");
+                Console.WriteLine("\t\t-Peppers\t$0.50");
 
             Console.WriteLine("\tSauce");
 
             switch (sauce)
             {
                 case 1:
-                Console.WriteLine("\t\tTraditional");
+                Console.WriteLine("\t\t-Traditional");
                 break;
 
                 case 2:
-                Console.WriteLine("\t\tGarlic         $1.00");
+                Console.WriteLine("\t\t-Garlic\t\t$1.00");
                 break;
 
                 case 3:
-                Console.WriteLine("\t\tOregano        $1.00");
+                Console.WriteLine("\t\t-Oregano\t$1.00");
                 break;
 
             }
@@ -282,22 +276,22 @@ namespace PizzaCreator
             switch (cheese)
             {
                 case 1:
-                Console.WriteLine("\t\tRegular");
+                Console.WriteLine("\t\t-Regular");
                 break;
 
                 case 2:
-                Console.WriteLine("\t\tExtra          \t$1.25");
+                Console.WriteLine("\t\t-Extra\t\t$1.25");
                 break;
             }
 
             Console.WriteLine("\t______________________________");
-            Console.WriteLine("\tTotal       \t\t$" + CalculateTotal());            
+            Console.WriteLine("\tTotal\t\t\t$" + CalculateTotal());            
                 }
         }
 
         private static decimal CalculateTotal()
         {
-            var vegetables = 0.50m;
+            var veggies = 0.50m;
             var xMeats = 0.75m;
             var price = 0m;
             switch(size)
@@ -320,13 +314,13 @@ namespace PizzaCreator
             if (sausage)
                 price += xMeats;
             if (blackOlives)
-                price += vegetables;
+                price += veggies;
             if (mushrooms)
-                price += vegetables;
+                price += veggies;
             if (onions)
-                price += vegetables;
+                price += veggies;
             if (peppers)
-                price += vegetables;
+                price += veggies;
 
             switch (sauce)
             {
@@ -367,6 +361,8 @@ namespace PizzaCreator
         static bool onions;
         static bool peppers;
         static int sauce;
+        static int meat;
+        static int veggies;
         static int cheese;
         static int delivery;
         static bool orderExists = false;
