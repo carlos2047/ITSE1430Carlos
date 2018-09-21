@@ -21,7 +21,8 @@ namespace PizzaCreator
         {
             while (true)
             {
-                Console.WriteLine("Current Cart: $"+ CalculateTotal());
+                Console.WriteLine("\t\nCurrent Shopping Cart: $"+ CalculateTotal()+ "\n");
+                Console.WriteLine("\tBuild a Pizza");
                 Console.WriteLine("\t1. New Order ");
                 Console.WriteLine("\t2. Modify Order ");
                 Console.WriteLine("\t3. Display Order");
@@ -57,7 +58,7 @@ namespace PizzaCreator
 
         private static void Size()
         {
-            Console.WriteLine("Size (one required).");
+            Console.WriteLine("\tPizza Size (choose one).");
             Console.WriteLine("\t1. Small ($5) {0}", size == 1 ? "Selected": " ");
             Console.WriteLine("\t2. Medium ($6.25) {0}", size  == 2 ? "Selected" : " ");
             Console.WriteLine("\t3. Large ($8.25) {0}", size == 3 ? "Selected" : " ");
@@ -91,12 +92,12 @@ namespace PizzaCreator
                 bool toggleHam = false;
                 bool togglePepperoni = false;
                 bool toggleSausage = false;
-                Console.WriteLine("Meats (zero or more) Choose 5 when done adding meats.");
+                Console.WriteLine("\tAdd Meats (zero or more)\n\tChoose 5 when done with meats.");
                 Console.WriteLine("\t1. Bacon (+$0.75) {0}", toggleBacon ? "Selected": " ");
                 Console.WriteLine("\t2. Ham(+$0.75) {0}", toggleHam  ? "Selected": " ");
                 Console.WriteLine("\t3. Pepperoni(+$0.75) {0}", togglePepperoni  ? "Selected": " ");
                 Console.WriteLine("\t4. Sausage(+$0.75) {0}", toggleSausage  ? "Selected": " ");
-                Console.WriteLine("\t5. Done");
+                Console.WriteLine("\t5. Next");
                 meat = ReadInt32(1, 5);
                 switch (meat)
                 {
@@ -135,12 +136,12 @@ namespace PizzaCreator
                 bool toggleShroom = false;
                 bool toggleOnion = false;
                 bool togglePep = false;
-                Console.WriteLine("Veggies (zero or more) Choose 5 when done adding veggies.");
+                Console.WriteLine("\tAdd Veggies (zero or more)\n\tChoose 5 when done with veggies.");
                 Console.WriteLine("\t1. Black olives (+$0.50) {0}", toggleOlives==true ? "Selected": " ");
                 Console.WriteLine("\t2. Mushrooms (+$0.50) {0}", toggleShroom==true ? "Selected": " ");
                 Console.WriteLine("\t3. Onions (+$0.50) {0}", toggleOnion==true ? "Selected": " ");
                 Console.WriteLine("\t4. Peppers (+$0.50) {0}", togglePep==true ? "Selected": " ");
-                Console.WriteLine("\t5. Done");
+                Console.WriteLine("\t5. Next");
 
              
                 veggies = ReadInt32(1, 5);
@@ -176,8 +177,8 @@ namespace PizzaCreator
 
         private static void Sauce()
         {
-            Console.WriteLine("Sauce (one is required).");
-            Console.WriteLine("\t1. Traditional ($0) {0}", sauce == 1 ? "Selected" : " ");
+            Console.WriteLine("\tPizza Sauce (choose one).");
+            Console.WriteLine("\t1. Traditional (No cost) {0}", sauce == 1 ? "Selected" : " ");
             Console.WriteLine("\t2. Garlic ($1) {0}", sauce == 2 ? "Selected" : " ");
             Console.WriteLine("\t3. Oregano ($1) {0}", sauce == 3 ? "Selected" : " ");
 
@@ -187,8 +188,8 @@ namespace PizzaCreator
 
         private static void Cheese()
         {
-            Console.WriteLine("Cheese (one is required). ");
-            Console.WriteLine("\t1. Regular ($0) {0}", cheese == 1 ? "Selected" : " ");
+            Console.WriteLine("\tHow much Cheese? (choose one). ");
+            Console.WriteLine("\t1. Regular (No cost) {0}", cheese == 1 ? "Selected" : " ");
             Console.WriteLine("\t2. Extra (1.25) {0}", cheese == 2 ? "Selected" : " ");
 
             cheese = ReadInt32(1, 2);
@@ -197,8 +198,8 @@ namespace PizzaCreator
 
         private static void Delivery()
         {
-            Console.WriteLine("Delivery (one is required).");
-            Console.WriteLine("\t1. Take Out ($0) {0}", delivery == 1 ? "Selected" : " ");
+            Console.WriteLine("\tDelivery (choose one).");
+            Console.WriteLine("\t1. Take Out (No cost) {0}", delivery == 1 ? "Selected" : " ");
             Console.WriteLine("\t2. Delivery ($2.50) {0}", delivery == 2 ? "Selected" : " ");
 
             delivery = ReadInt32(1, 2);
@@ -211,6 +212,7 @@ namespace PizzaCreator
                  Console.WriteLine("No order exists!");
                 }
             else
+                Console.WriteLine("\tPlease reselct options.\n");
             NewOrder();
         }
 
@@ -222,7 +224,9 @@ namespace PizzaCreator
                 }
             else
                 {
-                Console.WriteLine("\tYour Order\n");
+                Console.WriteLine("------------------------------------------\n");
+
+                Console.WriteLine("\tYour Order Summary\n");
                 switch (size)
                     {
                     case 1:
@@ -301,7 +305,9 @@ namespace PizzaCreator
             }
 
             Console.WriteLine("\t______________________________");
-            Console.WriteLine("\tTotal\t\t\t$" + CalculateTotal());            
+            Console.WriteLine("\tTotal\t\t\t$" + CalculateTotal());
+            Console.WriteLine("\n------------------------------------------\n");
+                
                 }
         }
 
