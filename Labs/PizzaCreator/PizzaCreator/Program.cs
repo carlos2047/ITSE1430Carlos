@@ -87,28 +87,36 @@ namespace PizzaCreator
         {
             while (true)
             {
+                bool toggleBacon = false;
+                bool toggleHam = false;
+                bool togglePepperoni = false;
+                bool toggleSausage = false;
                 Console.WriteLine("Meats (zero or more) Choose 5 when done adding meats.");
-                Console.WriteLine("\t1. Bacon (+$0.75) {0}", meat == 1 ? "Selected": " ");
-                Console.WriteLine("\t2. Ham(+$0.75) {0}", meat == 2 ? "Selected": " ");
-                Console.WriteLine("\t3. Pepperoni(+$0.75) {0}", meat == 3 ? "Selected": " ");
-                Console.WriteLine("\t4. Sausage(+$0.75) {0}", meat == 4 ? "Selected": " ");
+                Console.WriteLine("\t1. Bacon (+$0.75) {0}", toggleBacon ? "Selected": " ");
+                Console.WriteLine("\t2. Ham(+$0.75) {0}", toggleHam  ? "Selected": " ");
+                Console.WriteLine("\t3. Pepperoni(+$0.75) {0}", togglePepperoni  ? "Selected": " ");
+                Console.WriteLine("\t4. Sausage(+$0.75) {0}", toggleSausage  ? "Selected": " ");
                 Console.WriteLine("\t5. Done");
                 meat = ReadInt32(1, 5);
                 switch (meat)
                 {
                     case 1:
+                        toggleBacon=true;
                     bacon = !bacon;
                     break;
 
                     case 2:
+                        toggleHam = true;
                     ham = !ham;
                     break;
 
                     case 3:
+                        togglePepperoni = true;
                     pepperoni = !pepperoni;
                     break;
 
                     case 4:
+                        toggleSausage = true;
                     sausage = !sausage;
                     break;
 
@@ -123,35 +131,43 @@ namespace PizzaCreator
         {
             while (true)
             {
+                bool toggleOlives = false;
+                bool toggleShroom = false;
+                bool toggleOnion = false;
+                bool togglePep = false;
                 Console.WriteLine("Veggies (zero or more) Choose 5 when done adding veggies.");
-                Console.WriteLine("\t1. Black olives (+$0.50) {0}", veggies == 1 ? "Selected": " ");
-                Console.WriteLine("\t2. Mushrooms (+$0.50) {0}", veggies == 2 ? "Selected": " ");
-                Console.WriteLine("\t3. Onions (+$0.50) {0}", veggies == 3 ? "Selected": " ");
-                Console.WriteLine("\t4. Peppers (+$0.50) {0}", veggies == 4 ? "Selected": " ");
+                Console.WriteLine("\t1. Black olives (+$0.50) {0}", toggleOlives==true ? "Selected": " ");
+                Console.WriteLine("\t2. Mushrooms (+$0.50) {0}", toggleShroom==true ? "Selected": " ");
+                Console.WriteLine("\t3. Onions (+$0.50) {0}", toggleOnion==true ? "Selected": " ");
+                Console.WriteLine("\t4. Peppers (+$0.50) {0}", togglePep==true ? "Selected": " ");
                 Console.WriteLine("\t5. Done");
 
-
+             
                 veggies = ReadInt32(1, 5);
                 switch (veggies)
                 {
                     case 1:
-                    blackOlives = !blackOlives;
-                    break;
+                        toggleOlives = true;
+                        blackOlives = !blackOlives;
+                        break;
 
                     case 2:
-                    mushrooms = !mushrooms;
-                    break;
+                        toggleShroom = true;
+                        mushrooms = !mushrooms;
+                        break;
 
                     case 3:
-                    onions = !onions;
-                    break;
+                        toggleOnion = true;
+                        onions = !onions;
+                        break;
 
                     case 4:
-                    peppers = !peppers;
-                    break;
+                        togglePep = true;
+                        peppers = !peppers;
+                        break;
 
                     case 5:
-                    return;
+                        return;
 
                 }
 
@@ -291,65 +307,65 @@ namespace PizzaCreator
 
         private static decimal CalculateTotal()
         {
-            var veggies = 0.50m;
-            var xMeats = 0.75m;
-            var price = 0m;
+            var totalVeggies = 0.50m;
+            var totalMeats = 0.75m;
+            var totalPrice = 0m;
             switch(size)
             { 
-                case 1: price +=5;
+                case 1: totalPrice +=5;
                 break;
                 
-                case 2: price +=6.25m;
+                case 2: totalPrice +=6.25m;
                 break;
                  
-                case 3: price +=8.25m; break;
+                case 3: totalPrice +=8.25m; break;
             };
 
             if (bacon)
-                price += xMeats;
+                totalPrice += totalMeats;
             if (ham)
-                price += xMeats;
+                totalPrice += totalMeats;
             if (pepperoni)
-                price += xMeats;
+                totalPrice += totalMeats;
             if (sausage)
-                price += xMeats;
+                totalPrice += totalMeats;
             if (blackOlives)
-                price += veggies;
+                totalPrice += totalVeggies;
             if (mushrooms)
-                price += veggies;
+                totalPrice += totalVeggies;
             if (onions)
-                price += veggies;
+                totalPrice += totalVeggies;
             if (peppers)
-                price += veggies;
+                totalPrice += totalVeggies;
 
             switch (sauce)
             {
-                case 1: price += 0;
+                case 1: totalPrice += 0;
                 
                 break;
 
-                case 2: price += 1m; break;
+                case 2: totalPrice += 1m; break;
 
-                case 3: price += 1m; break;
+                case 3: totalPrice += 1m; break;
 
             }
 
             switch (cheese)
             {
-                case 1: price += 0; break;
+                case 1: totalPrice += 0; break;
 
-                case 2: price += 1.25m; break;
+                case 2: totalPrice += 1.25m; break;
 
             }
 
             switch (delivery)
             {
-                case 1: price += 0; break;
+                case 1: totalPrice += 0; break;
 
-                case 2: price += 2.50m; break;
+                case 2: totalPrice += 2.50m; break;
             }
 
-            return price;
+            return totalPrice;
         }
         static int size;
         static bool bacon;
