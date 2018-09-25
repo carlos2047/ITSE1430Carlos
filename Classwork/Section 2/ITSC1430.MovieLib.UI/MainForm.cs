@@ -29,5 +29,15 @@ namespace ITSC1430.MovieLib.UI
         {
             MessageBox.Show("Can't", "Help", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void OnMovieAdd( object sender, EventArgs e )
+        {
+            var form = new AddMovie();
+
+            if (form.ShowDialog(this) == DialogResult.Cancel)
+                return;
+
+            MessageBox.Show("Adding Movie");
+        }
     }
 }
