@@ -1,6 +1,6 @@
 ﻿namespace ITSC1430.MovieLib.UI
 {
-    partial class AddMovie
+    partial class MovieForm
     {
         /// <summary>
         /// Required designer variable.

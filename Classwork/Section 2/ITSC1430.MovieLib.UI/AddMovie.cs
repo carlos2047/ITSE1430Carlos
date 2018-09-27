@@ -10,12 +10,14 @@ using System.Windows.Forms;
 
 namespace ITSC1430.MovieLib.UI
 {
-    public partial class AddMovie : Form
+    public partial class MovieForm : Form
     {
-        public AddMovie()
+        public MovieForm()
         {
             InitializeComponent();
         }
+
+        public Movie Movie;
 
         private void OnCancel( object sender, EventArgs e )
         {
@@ -26,24 +28,26 @@ namespace ITSC1430.MovieLib.UI
         private void OnSave( object sender, EventArgs e )
         {
             var movie = new Movie();
+            var movie2 = new Movie();
 
             //Name is required
-            movie.Name = _txtName.Text;
+            movie.SetName(_txtName.Text);
             if (String.IsNullOrEmpty(_txtName.Text))
                 return;
 
-            movie.Description = _txtDescription.Text;
+            movie.SetDescription(_txtDescription.Text);
 
             //Release year is numeric, if set
-            movie.ReleaseYear = GetInt32(_txtReleaseYear);
-            if (movie.ReleaseYear < 0)
+            movie.SetReleaseYear(GetInt32(_txtReleaseYear));
+            if (movie.GetReleaseYear() < 0)
                 return;
 
             //Run lengt, if set
-            movie.RunLength = GetInt32(_txtRunLength);
-            if (movie.RunLength < 0)
+            movie.SetRunLength(GetInt32(_txtRunLength));
+            if (movie.GetRunLength() < 0)
                 return;
 
+            Movie = movie;
             DialogResult = DialogResult.OK;
             Close();
         }

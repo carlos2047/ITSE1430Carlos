@@ -32,12 +32,16 @@ namespace ITSC1430.MovieLib.UI
 
         private void OnMovieAdd( object sender, EventArgs e )
         {
-            var form = new AddMovie();
+            var form = new MovieForm();
 
             if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
 
-            MessageBox.Show("Adding Movie");
+            //MessageBox.Show("Adding Movie");
+            Movie = form.Movie;
         }
+
+        private Movie Movie;
+
     }
 }
