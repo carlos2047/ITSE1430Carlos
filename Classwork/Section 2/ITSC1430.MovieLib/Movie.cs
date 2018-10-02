@@ -8,60 +8,42 @@ namespace ITSC1430.MovieLib
 {
     public class Movie
     {
-        public string GetName()
+        public string Name
         {
-            return _name ?? "";
+            get { return _name ?? ""; }   //string get ()
+            set { _name = value; }  //void set ( string value )
         }
-        public void SetName (string value)
-        {
-            _name = value;
-        }
-        private string _name;
+        //public string GetName()
+        //{
+        //    return _name ?? "";
+        //}
+        //public void SetName (string value)
+        //{
+        //    _name = value;
+        //}
+        private string _name = "";
 
         //public System.String Name;
 
-        public string GetDescription()
+            public string Description
         {
-            return _description ?? "";
+            get { return _description ?? ""; }
+            set { _description = value; }
         }
-        public void SetDescription(string value)
-        {
-            _description = value;
-        }
+        
         private string _description;
 
-        public int GetReleaseYear()
+        public int ReleaseYear { get; set; } = 1900;
+
+       // private int _releaseYear = 1900;
+
+        public int RunLength { get; set; }
+
+        //showing mixed accessibility
+        public int Id { get; private set; }
+        public bool isColor
         {
-            return _releaseYear;
-        }
-        public void SetReleaseYear(int value)
-        {
-            if (value >= 1900)
-                _releaseYear = value;
-        }
-        private int _releaseYear;
-
-        public int GetRunLength()
-        {
-            return _runLength;
-        }
-        public void SetRunLength(int value)
-        {
-            if (value >= 0)
-            _runLength = value;
-        }
-        private int _runLength;
-
-        int someValue;
-        private int someValue2;
-
-        //void Foo ()
-        //{
-        //    var x = RunLength;
-
-        //    var isLong = x > 100;
-
-        //    var y = someValue;
-        //}
+            get { return ReleaseYear > 1940; }
+        }    
     }
 }
