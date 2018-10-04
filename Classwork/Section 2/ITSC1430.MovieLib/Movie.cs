@@ -41,9 +41,11 @@ namespace ITSC1430.MovieLib
 
         //showing mixed accessibility
         public int Id { get; private set; }
-        public bool isColor
+        public bool IsColor
         {
             get { return ReleaseYear > 1940; }
         }    
+
+        public bool IsOwned { get; set; }
     }
 }
