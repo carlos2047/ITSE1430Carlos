@@ -131,9 +131,9 @@
             this._chkOwned.AutoSize = true;
             this._chkOwned.Location = new System.Drawing.Point(90, 253);
             this._chkOwned.Name = "_chkOwned";
-            this._chkOwned.Size = new System.Drawing.Size(60, 17);
+            this._chkOwned.Size = new System.Drawing.Size(66, 17);
             this._chkOwned.TabIndex = 10;
-            this._chkOwned.Text = "Owned";
+            this._chkOwned.Text = "Owned?";
             this._chkOwned.UseVisualStyleBackColor = true;
             // 
             // MovieForm
