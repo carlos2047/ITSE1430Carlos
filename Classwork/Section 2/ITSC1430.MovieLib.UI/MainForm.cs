@@ -44,8 +44,19 @@ namespace ITSC1430.MovieLib.UI
 
         private MovieDatabase _database = new MovieDatabase();
 
-        private void MainForm_Load( object sender, EventArgs e )
+        //this method may be overridden in a derived type
+        protected virtual void SomeFunction()
         {
+
+        }
+
+        //This method MUST be defined in a derived type
+       // protected abstract void SomeAbstractFunction();
+
+        protected override void OnLoad( EventArgs e )
+        {
+            base.OnLoad(e);
+
             _listMovies.DisplayMember = "Name";
             RefreshMovies();
         }
@@ -60,8 +71,16 @@ namespace ITSC1430.MovieLib.UI
         {
             return _listMovies.SelectedItem as Movie;          
         }
+
         private void OnMovieDelete( object sender, EventArgs e )
         {
+            DeleteMovie();
+        }
+        private void DeleteMovie()
+        {
+            if (MessageBox.Show("Are you sure you want to delete this movie?", "Delete", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+
             var item = GetSelectedMovie();
             if (item == null)
                 return;
@@ -69,8 +88,7 @@ namespace ITSC1430.MovieLib.UI
             _database.Remove(item.Name);
             RefreshMovies();
         }
-
-        private void OnMovieEdit( object sender, EventArgs e )
+        private void EditMovie()
         {
             var item = GetSelectedMovie();
             if (item == null)
@@ -84,6 +102,24 @@ namespace ITSC1430.MovieLib.UI
             //Add to database and refesh
             _database.Edit(item.Name, form.Movie);
             RefreshMovies();
+        }
+
+        private void OnMovieEdit( object sender, EventArgs e )
+        {
+            EditMovie();
+        }
+
+        private void OnMovieDoubleClick( object sender, EventArgs e )
+        {
+            EditMovie();
+        }
+
+        private void OnListKeyUp( object sender, KeyEventArgs e )
+        {
+            if (e.KeyData == Keys.Delete)
+            {
+                DeleteMovie();
+            }
         }
     }
 }
