@@ -59,6 +59,7 @@ namespace ITSC1430.MovieLib.UI
 
             _listMovies.DisplayMember = "Name";
             RefreshMovies();
+            ValidateChildren();
         }
         private void RefreshMovies()
         {

@@ -27,27 +27,16 @@ namespace ITSC1430.MovieLib.UI
 
         private void OnSave( object sender, EventArgs e )
         {
+            if (!ValidateChildren())
+                return;
+
             var movie = new Movie();
             //var movie2 = new Movie();
 
-            //Name is required
             movie.Name = _txtName.Text;
-            //movie.SetName(_txtName.Text);
-            if (String.IsNullOrEmpty(movie.Name))
-                return;
-
             movie.Description = _txtDescription.Text;
-
-            //Release year is numeric, if set
             movie.ReleaseYear = GetInt32(_txtReleaseYear);
-            if (movie.ReleaseYear < 0)
-                return;
-
-            //Run lengt, if set
             movie.RunLength = GetInt32(_txtRunLength);
-            if (movie.RunLength < 0)
-                return;
-
             movie.IsOwned = _chkOwned.Checked;
 
             Movie = movie;
@@ -76,6 +65,42 @@ namespace ITSC1430.MovieLib.UI
                 _txtRunLength.Text = Movie.RunLength.ToString();
                 _chkOwned.Checked = Movie.IsOwned;
             }
+        }
+
+        private void OnValidateName( object sender, CancelEventArgs e )
+        {
+            var control = sender as TextBox;
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                _errors.SetError(control, "Name is Required");
+                e.Cancel = true;
+            } else
+                _errors.SetError(control, "");
+        }
+
+        private void OnValidateReleaseYear( object sender, CancelEventArgs e )
+        {
+            var control = sender as TextBox;
+            var result = GetInt32(control);
+            if (result < 1900)
+            {
+                _errors.SetError(control, "Must be > 1900");
+                e.Cancel = true;
+            }else
+                _errors.SetError(control, "");
+        }
+
+        private void OnValidateRunLength( object sender, CancelEventArgs e )
+        {
+            var control = sender as TextBox;
+            var result = GetInt32(control);
+            if (result == 0)
+            {
+                _errors.SetError(control, "Must be > 0");
+                e.Cancel = true;
+            }else
+                _errors.SetError(control, "");
+
         }
     }
 }

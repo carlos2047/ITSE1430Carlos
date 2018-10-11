@@ -49,7 +49,7 @@
             this.helpToolStripMenuItem});
             this._mainMenu.Location = new System.Drawing.Point(0, 0);
             this._mainMenu.Name = "_mainMenu";
-            this._mainMenu.Size = new System.Drawing.Size(699, 24);
+            this._mainMenu.Size = new System.Drawing.Size(251, 24);
             this._mainMenu.TabIndex = 0;
             this._mainMenu.Text = "menuStrip1";
             // 
@@ -123,7 +123,7 @@
             this._listMovies.FormattingEnabled = true;
             this._listMovies.Location = new System.Drawing.Point(0, 24);
             this._listMovies.Name = "_listMovies";
-            this._listMovies.Size = new System.Drawing.Size(699, 437);
+            this._listMovies.Size = new System.Drawing.Size(251, 234);
             this._listMovies.TabIndex = 1;
             this._listMovies.DoubleClick += new System.EventHandler(this.OnMovieDoubleClick);
             this._listMovies.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnListKeyUp);
@@ -132,7 +132,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(699, 461);
+            this.ClientSize = new System.Drawing.Size(251, 258);
             this.Controls.Add(this._listMovies);
             this.Controls.Add(this._mainMenu);
             this.MainMenuStrip = this._mainMenu;
