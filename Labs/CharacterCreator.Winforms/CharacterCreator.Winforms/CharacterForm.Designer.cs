@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             this.labelName = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
+            this._txtName = new System.Windows.Forms.TextBox();
             this.labelProfession = new System.Windows.Forms.Label();
             this.labelRace = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this._txtAgility = new System.Windows.Forms.TextBox();
             this.labelIntelligence = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this._txtIntel = new System.Windows.Forms.TextBox();
             this.labelStrength = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this._txtStrength = new System.Windows.Forms.TextBox();
             this.labelDescription = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this._txtDesc = new System.Windows.Forms.TextBox();
             this.labelCharisma = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this._txtCharisma = new System.Windows.Forms.TextBox();
             this.labelConstitution = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.cbxProf = new System.Windows.Forms.ComboBox();
-            this.cbxRace = new System.Windows.Forms.ComboBox();
+            this._txtConst = new System.Windows.Forms.TextBox();
+            this._cbxProf = new System.Windows.Forms.ComboBox();
+            this._cbxRace = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -59,12 +59,12 @@
             this.labelName.TabIndex = 3;
             this.labelName.Text = "Name";
             // 
-            // txtName
+            // _txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(95, 12);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(155, 20);
-            this.txtName.TabIndex = 2;
+            this._txtName.Location = new System.Drawing.Point(95, 12);
+            this._txtName.Name = "_txtName";
+            this._txtName.Size = new System.Drawing.Size(155, 20);
+            this._txtName.TabIndex = 2;
             // 
             // labelProfession
             // 
@@ -93,12 +93,12 @@
             this.label4.TabIndex = 13;
             this.label4.Text = "Agility";
             // 
-            // textBox4
+            // _txtAgility
             // 
-            this.textBox4.Location = new System.Drawing.Point(95, 206);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(35, 20);
-            this.textBox4.TabIndex = 12;
+            this._txtAgility.Location = new System.Drawing.Point(95, 206);
+            this._txtAgility.Name = "_txtAgility";
+            this._txtAgility.Size = new System.Drawing.Size(35, 20);
+            this._txtAgility.TabIndex = 12;
             // 
             // labelIntelligence
             // 
@@ -109,12 +109,12 @@
             this.labelIntelligence.TabIndex = 11;
             this.labelIntelligence.Text = "Intelligence";
             // 
-            // textBox5
+            // _txtIntel
             // 
-            this.textBox5.Location = new System.Drawing.Point(95, 163);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(35, 20);
-            this.textBox5.TabIndex = 10;
+            this._txtIntel.Location = new System.Drawing.Point(95, 163);
+            this._txtIntel.Name = "_txtIntel";
+            this._txtIntel.Size = new System.Drawing.Size(35, 20);
+            this._txtIntel.TabIndex = 10;
             // 
             // labelStrength
             // 
@@ -125,12 +125,12 @@
             this.labelStrength.TabIndex = 9;
             this.labelStrength.Text = "Strength";
             // 
-            // textBox6
+            // _txtStrength
             // 
-            this.textBox6.Location = new System.Drawing.Point(95, 127);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(35, 20);
-            this.textBox6.TabIndex = 8;
+            this._txtStrength.Location = new System.Drawing.Point(95, 127);
+            this._txtStrength.Name = "_txtStrength";
+            this._txtStrength.Size = new System.Drawing.Size(35, 20);
+            this._txtStrength.TabIndex = 8;
             // 
             // labelDescription
             // 
@@ -141,13 +141,13 @@
             this.labelDescription.TabIndex = 19;
             this.labelDescription.Text = "Description";
             // 
-            // textBox7
+            // _txtDesc
             // 
-            this.textBox7.Location = new System.Drawing.Point(95, 325);
-            this.textBox7.Multiline = true;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(240, 107);
-            this.textBox7.TabIndex = 18;
+            this._txtDesc.Location = new System.Drawing.Point(95, 325);
+            this._txtDesc.Multiline = true;
+            this._txtDesc.Name = "_txtDesc";
+            this._txtDesc.Size = new System.Drawing.Size(240, 107);
+            this._txtDesc.TabIndex = 18;
             // 
             // labelCharisma
             // 
@@ -158,12 +158,12 @@
             this.labelCharisma.TabIndex = 17;
             this.labelCharisma.Text = "Charisma";
             // 
-            // textBox8
+            // _txtCharisma
             // 
-            this.textBox8.Location = new System.Drawing.Point(95, 282);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(35, 20);
-            this.textBox8.TabIndex = 16;
+            this._txtCharisma.Location = new System.Drawing.Point(95, 282);
+            this._txtCharisma.Name = "_txtCharisma";
+            this._txtCharisma.Size = new System.Drawing.Size(35, 20);
+            this._txtCharisma.TabIndex = 16;
             // 
             // labelConstitution
             // 
@@ -174,28 +174,28 @@
             this.labelConstitution.TabIndex = 15;
             this.labelConstitution.Text = "Constitution";
             // 
-            // textBox9
+            // _txtConst
             // 
-            this.textBox9.Location = new System.Drawing.Point(95, 246);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(35, 20);
-            this.textBox9.TabIndex = 14;
+            this._txtConst.Location = new System.Drawing.Point(95, 246);
+            this._txtConst.Name = "_txtConst";
+            this._txtConst.Size = new System.Drawing.Size(35, 20);
+            this._txtConst.TabIndex = 14;
             // 
-            // cbxProf
+            // _cbxProf
             // 
-            this.cbxProf.FormattingEnabled = true;
-            this.cbxProf.Location = new System.Drawing.Point(95, 51);
-            this.cbxProf.Name = "cbxProf";
-            this.cbxProf.Size = new System.Drawing.Size(121, 21);
-            this.cbxProf.TabIndex = 20;
+            this._cbxProf.FormattingEnabled = true;
+            this._cbxProf.Location = new System.Drawing.Point(95, 51);
+            this._cbxProf.Name = "_cbxProf";
+            this._cbxProf.Size = new System.Drawing.Size(121, 21);
+            this._cbxProf.TabIndex = 20;
             // 
-            // cbxRace
+            // _cbxRace
             // 
-            this.cbxRace.FormattingEnabled = true;
-            this.cbxRace.Location = new System.Drawing.Point(95, 94);
-            this.cbxRace.Name = "cbxRace";
-            this.cbxRace.Size = new System.Drawing.Size(121, 21);
-            this.cbxRace.TabIndex = 21;
+            this._cbxRace.FormattingEnabled = true;
+            this._cbxRace.Location = new System.Drawing.Point(95, 94);
+            this._cbxRace.Name = "_cbxRace";
+            this._cbxRace.Size = new System.Drawing.Size(121, 21);
+            this._cbxRace.TabIndex = 21;
             // 
             // button1
             // 
@@ -225,24 +225,24 @@
             this.ClientSize = new System.Drawing.Size(349, 500);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.cbxRace);
-            this.Controls.Add(this.cbxProf);
+            this.Controls.Add(this._cbxRace);
+            this.Controls.Add(this._cbxProf);
             this.Controls.Add(this.labelDescription);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this._txtDesc);
             this.Controls.Add(this.labelCharisma);
-            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this._txtCharisma);
             this.Controls.Add(this.labelConstitution);
-            this.Controls.Add(this.textBox9);
+            this.Controls.Add(this._txtConst);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this._txtAgility);
             this.Controls.Add(this.labelIntelligence);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this._txtIntel);
             this.Controls.Add(this.labelStrength);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this._txtStrength);
             this.Controls.Add(this.labelRace);
             this.Controls.Add(this.labelProfession);
             this.Controls.Add(this.labelName);
-            this.Controls.Add(this.txtName);
+            this.Controls.Add(this._txtName);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CharacterForm";
@@ -257,23 +257,23 @@
         #endregion
 
         private System.Windows.Forms.Label labelName;
-        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox _txtName;
         private System.Windows.Forms.Label labelProfession;
         private System.Windows.Forms.Label labelRace;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox _txtAgility;
         private System.Windows.Forms.Label labelIntelligence;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox _txtIntel;
         private System.Windows.Forms.Label labelStrength;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox _txtStrength;
         private System.Windows.Forms.Label labelDescription;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox _txtDesc;
         private System.Windows.Forms.Label labelCharisma;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox _txtCharisma;
         private System.Windows.Forms.Label labelConstitution;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.ComboBox cbxProf;
-        private System.Windows.Forms.ComboBox cbxRace;
+        private System.Windows.Forms.TextBox _txtConst;
+        private System.Windows.Forms.ComboBox _cbxProf;
+        private System.Windows.Forms.ComboBox _cbxRace;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button Cancel;
     }
