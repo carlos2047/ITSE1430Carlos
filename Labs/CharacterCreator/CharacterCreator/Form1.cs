@@ -29,5 +29,10 @@ namespace CharacterCreator
 
             Close();
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Carlos Fuentes\nITSE 1430\nCharacter Creator", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
