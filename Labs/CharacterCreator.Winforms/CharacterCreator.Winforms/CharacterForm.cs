@@ -15,6 +15,7 @@ namespace CharacterCreator.Winforms
         public CharacterForm()
         {
             InitializeComponent();
+            _cbxProf.DataSource = Enum.
         }
 
         public Character Character { get; set; }
@@ -52,6 +53,29 @@ namespace CharacterCreator.Winforms
                 return value;
 
             return -1;
+        }
+        private void OnValidateName(object sender, CancelEventArgs e)
+        {
+            var control = sender as TextBox;
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                _errors.SetError(control, "Name is Required");
+                e.Cancel = true;
+            }
+            else
+                _errors.SetError(control, "");
+        }
+        private void OnValidateAttributes(object sender, CancelEventArgs e)
+        {
+            var control = sender as TextBox;
+            var result = GetInt32(control);
+            if (result < 0 || result > 100)
+            {
+                _errors.SetError(control, "Must be between 0 and 100");
+                e.Cancel = true;
+            }
+            else
+                _errors.SetError(control, "");
         }
     }
 }

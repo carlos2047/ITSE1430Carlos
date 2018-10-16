@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labelName = new System.Windows.Forms.Label();
             this._txtName = new System.Windows.Forms.TextBox();
             this.labelProfession = new System.Windows.Forms.Label();
@@ -48,6 +49,8 @@
             this._cbxRace = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
+            this._errors = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this._errors)).BeginInit();
             this.SuspendLayout();
             // 
             // labelName
@@ -65,6 +68,7 @@
             this._txtName.Name = "_txtName";
             this._txtName.Size = new System.Drawing.Size(155, 20);
             this._txtName.TabIndex = 2;
+            this._txtName.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateName);
             // 
             // labelProfession
             // 
@@ -99,6 +103,7 @@
             this._txtAgility.Name = "_txtAgility";
             this._txtAgility.Size = new System.Drawing.Size(35, 20);
             this._txtAgility.TabIndex = 12;
+            this._txtAgility.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateAttributes);
             // 
             // labelIntelligence
             // 
@@ -115,6 +120,7 @@
             this._txtIntel.Name = "_txtIntel";
             this._txtIntel.Size = new System.Drawing.Size(35, 20);
             this._txtIntel.TabIndex = 10;
+            this._txtIntel.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateAttributes);
             // 
             // labelStrength
             // 
@@ -131,6 +137,7 @@
             this._txtStrength.Name = "_txtStrength";
             this._txtStrength.Size = new System.Drawing.Size(35, 20);
             this._txtStrength.TabIndex = 8;
+            this._txtStrength.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateAttributes);
             // 
             // labelDescription
             // 
@@ -164,6 +171,7 @@
             this._txtCharisma.Name = "_txtCharisma";
             this._txtCharisma.Size = new System.Drawing.Size(35, 20);
             this._txtCharisma.TabIndex = 16;
+            this._txtCharisma.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateAttributes);
             // 
             // labelConstitution
             // 
@@ -180,6 +188,7 @@
             this._txtConst.Name = "_txtConst";
             this._txtConst.Size = new System.Drawing.Size(35, 20);
             this._txtConst.TabIndex = 14;
+            this._txtConst.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateAttributes);
             // 
             // _cbxProf
             // 
@@ -217,6 +226,10 @@
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.OnCancel);
             // 
+            // _errors
+            // 
+            this._errors.ContainerControl = this;
+            // 
             // CharacterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -249,6 +262,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create New Character";
+            ((System.ComponentModel.ISupportInitialize)(this._errors)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,5 +290,6 @@
         private System.Windows.Forms.ComboBox _cbxRace;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button Cancel;
+        private System.Windows.Forms.ErrorProvider _errors;
     }
 }
