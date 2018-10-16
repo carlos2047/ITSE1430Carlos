@@ -27,19 +27,16 @@ namespace CharacterCreator.Winforms
         }
 
         private void OnHelpAbout(object sender, EventArgs e)
-        {
-            //aboutToolStripMenuItem.
+        {           
             MessageBox.Show(this, "Carlos Fuentes\nITSE1430\nCharacter Creator", "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void OnCharacterNew(object sender, EventArgs e)
         {
+            var form = new CharacterForm();
 
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Carlos Fuentes\nITSE 1430\nCharacter Creator", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (form.ShowDialog(this) == DialogResult.Cancel)
+                return;
         }
     }
 }

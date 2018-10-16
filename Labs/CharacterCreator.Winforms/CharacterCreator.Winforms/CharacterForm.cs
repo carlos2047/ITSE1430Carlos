@@ -17,5 +17,15 @@ namespace CharacterCreator.Winforms
             InitializeComponent();
         }
 
+        private void OnCancel(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        private void OnSave(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
