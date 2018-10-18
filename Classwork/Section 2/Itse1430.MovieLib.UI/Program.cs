@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ITSC1430.MovieLib.UI
+namespace Itse1430.MovieLib.UI
 {
     static class Program
     {

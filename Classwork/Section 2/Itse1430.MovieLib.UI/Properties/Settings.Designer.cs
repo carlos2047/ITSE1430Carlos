@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ITSC1430.MovieLib.UI.Properties
+namespace Itse1430.MovieLib.UI.Properties
 {
 
 
@@ -21,8 +21,7 @@ namespace ITSC1430.MovieLib.UI.Properties
 
         public static Settings Default
         {
-            get
-            {
+            get {
                 return defaultInstance;
             }
         }
