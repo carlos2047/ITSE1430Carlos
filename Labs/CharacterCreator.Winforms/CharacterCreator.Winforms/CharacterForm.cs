@@ -15,7 +15,6 @@ namespace CharacterCreator.Winforms
         public CharacterForm()
         {
             InitializeComponent();
-            _cbxProf.DataSource = Enum.
         }
 
         public Character Character { get; set; }
@@ -76,6 +75,11 @@ namespace CharacterCreator.Winforms
             }
             else
                 _errors.SetError(control, "");
+        }
+
+        private void _cbxProf_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

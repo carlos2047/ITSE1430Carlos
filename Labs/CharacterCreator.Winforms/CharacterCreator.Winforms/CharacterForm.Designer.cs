@@ -192,14 +192,17 @@
             // 
             // _cbxProf
             // 
+            this._cbxProf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._cbxProf.FormattingEnabled = true;
             this._cbxProf.Location = new System.Drawing.Point(95, 51);
             this._cbxProf.Name = "_cbxProf";
             this._cbxProf.Size = new System.Drawing.Size(121, 21);
             this._cbxProf.TabIndex = 20;
+            this._cbxProf.SelectedIndexChanged += new System.EventHandler(this._cbxProf_SelectedIndexChanged);
             // 
             // _cbxRace
             // 
+            this._cbxRace.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._cbxRace.FormattingEnabled = true;
             this._cbxRace.Location = new System.Drawing.Point(95, 94);
             this._cbxRace.Name = "_cbxRace";
