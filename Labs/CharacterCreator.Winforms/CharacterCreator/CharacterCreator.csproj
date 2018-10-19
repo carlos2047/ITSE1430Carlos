@@ -41,7 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character.cs" />
+    <Compile Include="CharacterDatabase.cs" />
+    <Compile Include="Profession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Race.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -67,7 +67,7 @@
             this._txtName.Location = new System.Drawing.Point(95, 12);
             this._txtName.Name = "_txtName";
             this._txtName.Size = new System.Drawing.Size(155, 20);
-            this._txtName.TabIndex = 2;
+            this._txtName.TabIndex = 1;
             this._txtName.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateName);
             // 
             // labelProfession
@@ -102,7 +102,8 @@
             this._txtAgility.Location = new System.Drawing.Point(95, 206);
             this._txtAgility.Name = "_txtAgility";
             this._txtAgility.Size = new System.Drawing.Size(35, 20);
-            this._txtAgility.TabIndex = 12;
+            this._txtAgility.TabIndex = 6;
+            this._txtAgility.Text = "50";
             this._txtAgility.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateAttributes);
             // 
             // labelIntelligence
@@ -119,7 +120,8 @@
             this._txtIntel.Location = new System.Drawing.Point(95, 163);
             this._txtIntel.Name = "_txtIntel";
             this._txtIntel.Size = new System.Drawing.Size(35, 20);
-            this._txtIntel.TabIndex = 10;
+            this._txtIntel.TabIndex = 5;
+            this._txtIntel.Text = "50";
             this._txtIntel.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateAttributes);
             // 
             // labelStrength
@@ -136,7 +138,8 @@
             this._txtStrength.Location = new System.Drawing.Point(95, 127);
             this._txtStrength.Name = "_txtStrength";
             this._txtStrength.Size = new System.Drawing.Size(35, 20);
-            this._txtStrength.TabIndex = 8;
+            this._txtStrength.TabIndex = 4;
+            this._txtStrength.Text = "50";
             this._txtStrength.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateAttributes);
             // 
             // labelDescription
@@ -154,7 +157,7 @@
             this._txtDesc.Multiline = true;
             this._txtDesc.Name = "_txtDesc";
             this._txtDesc.Size = new System.Drawing.Size(240, 107);
-            this._txtDesc.TabIndex = 18;
+            this._txtDesc.TabIndex = 9;
             // 
             // labelCharisma
             // 
@@ -170,7 +173,8 @@
             this._txtCharisma.Location = new System.Drawing.Point(95, 282);
             this._txtCharisma.Name = "_txtCharisma";
             this._txtCharisma.Size = new System.Drawing.Size(35, 20);
-            this._txtCharisma.TabIndex = 16;
+            this._txtCharisma.TabIndex = 8;
+            this._txtCharisma.Text = "50";
             this._txtCharisma.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateAttributes);
             // 
             // labelConstitution
@@ -187,7 +191,8 @@
             this._txtConst.Location = new System.Drawing.Point(95, 246);
             this._txtConst.Name = "_txtConst";
             this._txtConst.Size = new System.Drawing.Size(35, 20);
-            this._txtConst.TabIndex = 14;
+            this._txtConst.TabIndex = 7;
+            this._txtConst.Text = "50";
             this._txtConst.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateAttributes);
             // 
             // _cbxProf
@@ -197,8 +202,9 @@
             this._cbxProf.Location = new System.Drawing.Point(95, 51);
             this._cbxProf.Name = "_cbxProf";
             this._cbxProf.Size = new System.Drawing.Size(121, 21);
-            this._cbxProf.TabIndex = 20;
-            this._cbxProf.SelectedIndexChanged += new System.EventHandler(this._cbxProf_SelectedIndexChanged);
+            this._cbxProf.TabIndex = 2;
+            this._cbxProf.DropDown += new System.EventHandler(this._cbxProf_DropDown);
+            this._cbxProf.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateDropDown);
             // 
             // _cbxRace
             // 
@@ -207,14 +213,16 @@
             this._cbxRace.Location = new System.Drawing.Point(95, 94);
             this._cbxRace.Name = "_cbxRace";
             this._cbxRace.Size = new System.Drawing.Size(121, 21);
-            this._cbxRace.TabIndex = 21;
+            this._cbxRace.TabIndex = 3;
+            this._cbxRace.DropDown += new System.EventHandler(this._cbxRace_DropDown);
+            this._cbxRace.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateDropDown);
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(179, 459);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 22;
+            this.button1.TabIndex = 10;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.OnSave);
@@ -224,13 +232,15 @@
             this.Cancel.Location = new System.Drawing.Point(260, 459);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
-            this.Cancel.TabIndex = 23;
+            this.Cancel.TabIndex = 11;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.OnCancel);
             // 
             // _errors
             // 
+            this._errors.BlinkRate = 0;
+            this._errors.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this._errors.ContainerControl = this;
             // 
             // CharacterForm

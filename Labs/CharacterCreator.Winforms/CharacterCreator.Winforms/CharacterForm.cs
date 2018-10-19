@@ -15,6 +15,8 @@ namespace CharacterCreator.Winforms
         public CharacterForm()
         {
             InitializeComponent();
+            _cbxProf.Text = "--Select--";
+            _cbxRace.Text = "--Select--";
         }
 
         public Character Character { get; set; }
@@ -27,6 +29,9 @@ namespace CharacterCreator.Winforms
 
         private void OnSave(object sender, EventArgs e)
         {
+            if (!ValidateChildren())
+                return;
+
             var character = new Character();
             character.Name = _txtName.Text;
             character.Profession = _cbxProf.Text;
@@ -68,7 +73,7 @@ namespace CharacterCreator.Winforms
         {
             var control = sender as TextBox;
             var result = GetInt32(control);
-            if (result < 0 || result > 100)
+            if (result < 0 || result > 100 || String.IsNullOrEmpty(control.Text))
             {
                 _errors.SetError(control, "Must be between 0 and 100");
                 e.Cancel = true;
@@ -77,9 +82,25 @@ namespace CharacterCreator.Winforms
                 _errors.SetError(control, "");
         }
 
-        private void _cbxProf_SelectedIndexChanged(object sender, EventArgs e)
+        private void _cbxProf_DropDown(object sender, EventArgs e)
         {
+            _cbxProf.DataSource = Enum.GetValues(typeof(Profession));
+        }
 
+        private void _cbxRace_DropDown(object sender, EventArgs e)
+        {
+            _cbxRace.DataSource = Enum.GetValues(typeof(Race));
+        }
+        private void OnValidateDropDown(object sender, CancelEventArgs e)
+        {
+            var control = sender as ComboBox;
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                _errors.SetError(control, "Choice is Required");
+                e.Cancel = true;
+            }
+            else
+                _errors.SetError(control, "");
         }
     }
 }
