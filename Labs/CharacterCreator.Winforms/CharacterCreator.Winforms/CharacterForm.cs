@@ -15,8 +15,6 @@ namespace CharacterCreator.Winforms
         public CharacterForm()
         {
             InitializeComponent();
-            _cbxProf.Text = "--Select--";
-            _cbxRace.Text = "--Select--";
         }
 
         public Character Character { get; set; }
@@ -25,6 +23,23 @@ namespace CharacterCreator.Winforms
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+                private void CharacterForm_Load(object sender, EventArgs e)
+        {
+            if (Character != null)
+            {
+                _txtName.Text = Character.Name;
+                _cbxProf.Text = Character.Profession;
+                _cbxRace.Text = Character.Race;
+                _txtStrength.Text = Character.Strength.ToString();
+                _txtIntel.Text = Character.Intelligence.ToString();
+                _txtAgility.Text = Character.Agility.ToString();
+                _txtConst.Text = Character.Constitution.ToString();
+                _txtCharisma.Text = Character.Charisma.ToString();
+                _txtDesc.Text = Character.Description;
+            };
+
+            ValidateChildren();
         }
 
         private void OnSave(object sender, EventArgs e)
@@ -80,16 +95,6 @@ namespace CharacterCreator.Winforms
             }
             else
                 _errors.SetError(control, "");
-        }
-
-        private void _cbxProf_DropDown(object sender, EventArgs e)
-        {
-            _cbxProf.DataSource = Enum.GetValues(typeof(Profession));
-        }
-
-        private void _cbxRace_DropDown(object sender, EventArgs e)
-        {
-            _cbxRace.DataSource = Enum.GetValues(typeof(Race));
         }
         private void OnValidateDropDown(object sender, CancelEventArgs e)
         {

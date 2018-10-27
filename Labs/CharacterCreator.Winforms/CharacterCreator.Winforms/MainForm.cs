@@ -27,7 +27,7 @@ namespace CharacterCreator.Winforms
         }
 
         private void OnHelpAbout(object sender, EventArgs e)
-        {           
+        {
             MessageBox.Show(this, "Carlos Fuentes\nITSE1430\nCharacter Creator", "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -40,7 +40,7 @@ namespace CharacterCreator.Winforms
             _database.Add(form.Character);
             RefreshCharacters();
         }
-                protected override void OnLoad(EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
@@ -82,7 +82,7 @@ namespace CharacterCreator.Winforms
 
             // Show form with selected name
             var form = new CharacterForm();
-            form.Character = item; 
+            form.Character = item;
             if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
 

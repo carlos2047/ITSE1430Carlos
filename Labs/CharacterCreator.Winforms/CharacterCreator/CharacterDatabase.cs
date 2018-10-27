@@ -8,8 +8,6 @@ namespace CharacterCreator
 {
     public class CharacterDatabase
     {
-
-
         private Character[] _characters = new Character[100];
 
         private int FindNextFreeIndex()

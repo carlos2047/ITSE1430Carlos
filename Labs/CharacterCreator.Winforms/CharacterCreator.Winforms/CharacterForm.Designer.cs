@@ -199,22 +199,32 @@
             // 
             this._cbxProf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._cbxProf.FormattingEnabled = true;
+            this._cbxProf.Items.AddRange(new object[] {
+            "Fighter",
+            "Hunter",
+            "Priest",
+            "Rogue",
+            "Wizard"});
             this._cbxProf.Location = new System.Drawing.Point(95, 51);
             this._cbxProf.Name = "_cbxProf";
             this._cbxProf.Size = new System.Drawing.Size(121, 21);
             this._cbxProf.TabIndex = 2;
-            this._cbxProf.DropDown += new System.EventHandler(this._cbxProf_DropDown);
             this._cbxProf.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateDropDown);
             // 
             // _cbxRace
             // 
             this._cbxRace.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._cbxRace.FormattingEnabled = true;
+            this._cbxRace.Items.AddRange(new object[] {
+            "Dwarf",
+            "Elf",
+            "Gnome",
+            "Half Elf",
+            "Human"});
             this._cbxRace.Location = new System.Drawing.Point(95, 94);
             this._cbxRace.Name = "_cbxRace";
             this._cbxRace.Size = new System.Drawing.Size(121, 21);
             this._cbxRace.TabIndex = 3;
-            this._cbxRace.DropDown += new System.EventHandler(this._cbxRace_DropDown);
             this._cbxRace.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateDropDown);
             // 
             // button1
@@ -275,6 +285,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create New Character";
+            this.Load += new System.EventHandler(this.CharacterForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this._errors)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
