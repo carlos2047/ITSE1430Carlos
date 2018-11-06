@@ -24,9 +24,29 @@ namespace CharacterCreator.Winforms
             DialogResult = DialogResult.Cancel;
             Close();
         }
+                private void CharacterForm_Load(object sender, EventArgs e)
+        {
+            if (Character != null)
+            {
+                _txtName.Text = Character.Name;
+                _cbxProf.Text = Character.Profession;
+                _cbxRace.Text = Character.Race;
+                _txtStrength.Text = Character.Strength.ToString();
+                _txtIntel.Text = Character.Intelligence.ToString();
+                _txtAgility.Text = Character.Agility.ToString();
+                _txtConst.Text = Character.Constitution.ToString();
+                _txtCharisma.Text = Character.Charisma.ToString();
+                _txtDesc.Text = Character.Description;
+            };
+
+            ValidateChildren();
+        }
 
         private void OnSave(object sender, EventArgs e)
         {
+            if (!ValidateChildren())
+                return;
+
             var character = new Character();
             character.Name = _txtName.Text;
             character.Profession = _cbxProf.Text;
@@ -68,7 +88,7 @@ namespace CharacterCreator.Winforms
         {
             var control = sender as TextBox;
             var result = GetInt32(control);
-            if (result < 0 || result > 100)
+            if (result < 0 || result > 100 || String.IsNullOrEmpty(control.Text))
             {
                 _errors.SetError(control, "Must be between 0 and 100");
                 e.Cancel = true;
@@ -76,10 +96,16 @@ namespace CharacterCreator.Winforms
             else
                 _errors.SetError(control, "");
         }
-
-        private void _cbxProf_SelectedIndexChanged(object sender, EventArgs e)
+        private void OnValidateDropDown(object sender, CancelEventArgs e)
         {
-
+            var control = sender as ComboBox;
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                _errors.SetError(control, "Choice is Required");
+                e.Cancel = true;
+            }
+            else
+                _errors.SetError(control, "");
         }
     }
 }

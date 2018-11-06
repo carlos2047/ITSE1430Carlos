@@ -33,7 +33,8 @@ namespace CharacterCreator
         private string _race;
 
         public int Strength
-        { get { return _strength; }
+        {
+            get { return _strength; }
             set
             {
                 if (value < 0 || value > 100)
@@ -41,13 +42,13 @@ namespace CharacterCreator
 
                 _strength = value;
             }
-        }
+        } 
 
         private int _strength;
 
         public int Intelligence
         {
-            get { return _intelligence; }
+            get { return _intelligence = 50; }
             set
             {
                 if (value < 0 || value > 100)
@@ -61,7 +62,7 @@ namespace CharacterCreator
 
         public int Agility
         {
-            get { return _agility; }
+            get { return _agility = 50; }
             set
             {
                 if (value < 0 || value > 100)
@@ -75,7 +76,7 @@ namespace CharacterCreator
 
         public int Constitution
         {
-            get { return _constitution; }
+            get { return _constitution = 50; }
             set
             {
                 if (value < 0 || value > 100)
@@ -89,7 +90,7 @@ namespace CharacterCreator
 
         public int Charisma
         {
-            get { return _charisma; }
+            get { return _charisma = 50; }
             set
             {
                 if (value < 0 || value > 100)
