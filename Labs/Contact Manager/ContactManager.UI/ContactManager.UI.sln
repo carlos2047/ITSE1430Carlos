@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManager.UI", "ContactManager\ContactManager.UI.csproj", "{59326CD4-3DF7-4F6F-8DCD-5F024F87A753}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManager.UI", "ContactManager.UI\ContactManager.UI.csproj", "{59326CD4-3DF7-4F6F-8DCD-5F024F87A753}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManager", "ContactManager\ContactManager.csproj", "{7FE88E27-7792-46FA-9CE5-8755C393AB52}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManager.Memory", "ContactManager.Memory\ContactManager.Memory.csproj", "{4834B556-8891-4058-A0A8-9D1310998DD8}"
 EndProject
@@ -17,6 +19,10 @@ Global
 		{59326CD4-3DF7-4F6F-8DCD-5F024F87A753}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59326CD4-3DF7-4F6F-8DCD-5F024F87A753}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59326CD4-3DF7-4F6F-8DCD-5F024F87A753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FE88E27-7792-46FA-9CE5-8755C393AB52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FE88E27-7792-46FA-9CE5-8755C393AB52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FE88E27-7792-46FA-9CE5-8755C393AB52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FE88E27-7792-46FA-9CE5-8755C393AB52}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4834B556-8891-4058-A0A8-9D1310998DD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4834B556-8891-4058-A0A8-9D1310998DD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4834B556-8891-4058-A0A8-9D1310998DD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -26,6 +32,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D5CCC1E0-DFE3-46AE-9E43-CB79EE41A410}
+		SolutionGuid = {FB905337-8CDC-49EE-A5BF-8EFB3A2D9C8F}
 	EndGlobalSection
 EndGlobal
