@@ -13,21 +13,10 @@ namespace ContactManager
 		/// </remarks>
 		public static void Seed ( this IContactDatabase source )
 		{
-			//var contacts = new[] {
-			//	new Contact(){
-			//		Name = "Test1",
-			//		EmailAddress = "testemail1@gmail.com",
-			//	},
-			//	new Contact() {
-			//	Name = "Test2",
-			//	EmailAddress = "testemail2@gmail.com"
-			//	},
-			//};
-
 			var contacts = new[] {
 				new Contact(){
-					Name = "Cesar Estrada",
-					EmailAddress = "cesar.estrada585@my.tccd.edu",
+					Name = "Carlos Fuentes",
+					EmailAddress = "carlos.fuentes906@my.tccd.edu",
 				},				
 			};
 

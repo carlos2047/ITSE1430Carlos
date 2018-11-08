@@ -114,7 +114,7 @@ namespace ContactManager.UI
 			var form = new ContactForm();
 			form.Contact = itemName;
 
-			if (MessageBox.Show($"Are you sure you want to DELETE {itemName.Name}?", "Delete Character",
+			if (MessageBox.Show($"Are you sure you want to delete {itemName.Name}?", "Delete Contact",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
 				return;
 
@@ -154,9 +154,6 @@ namespace ContactManager.UI
 
 			_listContacts.Items.Clear();
 			_listContacts.Items.AddRange(contacts.ToArray());
-
-			_listMessages.Items.Clear();			
-			_listMessages.Items.AddRange(contacts.ToArray());
 		}
 
 		private Contact GetSelectedContact()
@@ -167,8 +164,8 @@ namespace ContactManager.UI
 		#region Private Members
 
 		private IContactDatabase _database = new MemoryContactDatabase();
-		private IMessageService _database2 = new MemoryContactDatabase();
-		private IMessageService = IContactDatabase;
+		//private IMessageService _database2 = new MemoryContactDatabase();
+		//private IMessageService = MemoryContactDatabase();
 		#endregion
 	}
 }
