@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManager.UI", "ContactManager\ContactManager.UI.csproj", "{BB1A24FA-0CF0-4A74-A79A-FF737D699131}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManager.UI", "ContactManager\ContactManager.UI.csproj", "{59326CD4-3DF7-4F6F-8DCD-5F024F87A753}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManager.Memory", "ContactManager.Memory\ContactManager.Memory.csproj", "{4834B556-8891-4058-A0A8-9D1310998DD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BB1A24FA-0CF0-4A74-A79A-FF737D699131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB1A24FA-0CF0-4A74-A79A-FF737D699131}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB1A24FA-0CF0-4A74-A79A-FF737D699131}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB1A24FA-0CF0-4A74-A79A-FF737D699131}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59326CD4-3DF7-4F6F-8DCD-5F024F87A753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59326CD4-3DF7-4F6F-8DCD-5F024F87A753}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59326CD4-3DF7-4F6F-8DCD-5F024F87A753}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59326CD4-3DF7-4F6F-8DCD-5F024F87A753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4834B556-8891-4058-A0A8-9D1310998DD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4834B556-8891-4058-A0A8-9D1310998DD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4834B556-8891-4058-A0A8-9D1310998DD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4834B556-8891-4058-A0A8-9D1310998DD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
