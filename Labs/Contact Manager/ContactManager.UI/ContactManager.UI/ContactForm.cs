@@ -1,7 +1,5 @@
-﻿// Cesar Estrada
-// November 5, 2018
-// ITSE 1430 MW 5pm
-// ContactForm.cs
+﻿// Carlos Fuentes
+// 11/4/2018
 
 using System;
 using System.ComponentModel;
@@ -28,8 +26,6 @@ namespace ContactManager.UI
 			}
 		}
 		
-		#region Event Handlers
-
 		private void OnSave_Click(object sender, EventArgs e)
 		{
 			if (!ValidateChildren())
@@ -75,29 +71,13 @@ namespace ContactManager.UI
 		{
 			var control = sender as TextBox;
 
-			//IsValideEmail(control.Text);
-
 			if (String.IsNullOrEmpty(control.Text))
 			{
 				_errors.SetError(control, "Valid email is required");
-				e.Cancel = true; //IsValideEmail(control.Text)
+				e.Cancel = true;
 			}
 			else
 				_errors.SetError(control, "");
-		}
-
-		//bool IsValideEmail(string source)		// where does this go maybe in message for
-		//{
-		//	try
-		//	{
-		//		new System.Net.Mail.MailAddress(source);
-		//		return true;
-		//	} catch
-		//	{ };
-		//	return false;
-		//}
-
-		#endregion
-				
+		}		
 	}
 }

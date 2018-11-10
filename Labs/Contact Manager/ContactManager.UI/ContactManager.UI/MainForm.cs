@@ -10,29 +10,23 @@ using System.Windows.Forms;
 namespace ContactManager.UI
 {
 	public partial class MainForm : Form
-	{
-		#region Contruction
-
+    {
 		public MainForm()
 		{
 			InitializeComponent();
 		}
 
-		#endregion
-
 		protected override void OnLoad ( EventArgs e )
 		{
 			base.OnLoad(e);
 
-			_database.Seed();			
 			_listContacts.DisplayMember = "Name";
-			_listMessages.DisplayMember = "EmailAddress";
-			_listMessages.DisplayMember = "Subject";
-			_listMessages.DisplayMember = "Message";
-			RefreshContacts();
-		}
+			_listMessages.DisplayMember = "MessageSubject";
 
-		#region Event Handlers
+            RefreshContacts();
+            RefreshMessages();
+        }
+
 
 		private void OnFileExit_Click(object sender, EventArgs e)
 		{
@@ -49,30 +43,29 @@ namespace ContactManager.UI
 			if (form.ShowDialog(this) == DialogResult.Cancel)
 				return;
 
-			// validate duplicates ?????????????????????????????????????
-			//var contacts = from m in _database.GetAll()
-			//			   where 
-			//			   orderby m.Name
-			//			   select m;
-
 			_database.Add(form.Contact);
 			RefreshContacts();
 		}
 
-		private void OnSendMessage_Click(object sender, EventArgs e)
-		{
-			// Get selected name, if any
-			var item = GetSelectedContact();
-			if (item == null)
-				return;
+        private void OnSendMessage_Click(object sender, EventArgs e)
+        {
+            // Get selected name, if any
+            var item = GetSelectedContact();
+            if (item == null)
+                return;
 
-			var form = new MessageForm();
-			form.Contact = item;
-			if (form.ShowDialog(this) == DialogResult.Cancel)
-				return;			
-		}
+            var form = new MessageForm();
+            form.Contact = item;
+            if (form.ShowDialog(this) == DialogResult.Cancel)
+                return;
 
-		private void OnContactEdit_Click(object sender, EventArgs e)
+             _sentMessages.Send(form.Message);
+
+            _sentMessages.GetAll();
+            RefreshMessages();
+        }
+
+        private void OnContactEdit_Click(object sender, EventArgs e)
 		{
 			EditContact();
 		}
@@ -93,16 +86,14 @@ namespace ContactManager.UI
 			EditContact();
 		}
 
-		private void OnListKeyUp(object sender, KeyEventArgs e)
+        private void OnListKeyUp(object sender, KeyEventArgs e)
 		{
 			if (e.KeyData == Keys.Delete)
 			{
 				DeleteContact();
 			}
 		}
-
-		#endregion
-
+        
 		private void DeleteContact ()
 		{
 			// Get selected name, if any
@@ -156,16 +147,36 @@ namespace ContactManager.UI
 			_listContacts.Items.AddRange(contacts.ToArray());
 		}
 
-		private Contact GetSelectedContact()
+        private void RefreshMessages()
+        {
+            var messages = from m in _sentMessages.GetAll()
+                           select m;
+
+            _listMessages.Items.Clear();
+            _listMessages.Items.AddRange(messages.ToArray());
+        }
+
+        private Contact GetSelectedContact()
 		{
 			return _listContacts.SelectedItem as Contact;
 		}
 
-		#region Private Members
+        private Message GetSelectedMessage()
+        {
+            return _listMessages.SelectedItem as Message;
+        }
 
-		private IContactDatabase _database = new MemoryContactDatabase();
-		//private IMessageService _database2 = new MemoryContactDatabase();
-		//private IMessageService = MemoryContactDatabase();
-		#endregion
-	}
+
+        private IContactDatabase _database = new MemoryContactDatabase();
+        private IMessageService _sentMessages = new MemoryMessageDatabase();
+
+        private void Format(object sender, ListControlConvertEventArgs e)
+        {
+            string email = ((Message)e.ListItem).MessageEmailAddress.ToString();
+            string subject = ((Message)e.ListItem).MessageSubject.ToString();
+            string message = ((Message)e.ListItem).MessageContent.ToString();
+
+            e.Value = email + ", RE: " + subject + " Message: " + message;
+        }
+    }
 }

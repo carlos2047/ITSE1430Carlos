@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ContactManager
 {
 	/// <summary>Manages a set of contacts.</summary>
-	public abstract class ContactDatabase : IContactDatabase//, IMessageService
+	public abstract class ContactDatabase : IContactDatabase
 	{
 		/// <summary>Adds a contact to the database.</summary>
 		/// <param name="contact">The contact to add.</param>
@@ -20,21 +20,15 @@ namespace ContactManager
 				return;
 
 			AddCore(contact);
-		}		
+		}
 
-		//public void Send(string emailAddress, string subject, string message)      //string emailAddress, string subject, string message
-		//{
-		//	if (subject == null)
-		//		return;
+        public abstract void Send(string emailAddress, string subject, string message);
 
-		//	AddCore(emailAddress, subject, message);
-		//}
+        //internal abstract void AddCore(string emailAddress, string subject, string message);
 
-		//internal abstract void AddCore(string emailAddress, string subject, string message);
-
-		/// <summary>Gets all the contacts.</summary>
-		/// <returns>The list of contacts.</returns>
-		public IEnumerable<Contact> GetAll()
+        /// <summary>Gets all the contacts.</summary>
+        /// <returns>The list of contacts.</returns>
+        public IEnumerable<Contact> GetAll()
 		{
 			return GetAllCore();
 		}
@@ -52,6 +46,8 @@ namespace ContactManager
 			var existing = FindByName(name);
 			if (existing == null)
 				return;
+
+            EditCore(FindByName(name),contact);
 		}
 
 		/// <summary>Removes a contact.</summary>
@@ -64,16 +60,14 @@ namespace ContactManager
 			RemoveCore(name);
 		}
 
-		#region Protected Members
+        /// <summary>Adds a contact.</summary>
+        /// <param name="contact">The contact to add.</param>
+        protected abstract void AddCore(Contact contact);
 
-		/// <summary>Adds a contact.</summary>
-		/// <param name="contact">The contact to add.</param>
-		protected abstract void AddCore(Contact contact);
-
-		/// <summary>Edits a contact.</summary>
-		/// <param name="oldContact">The old contact.</param>
-		/// <param name="newContact">The new contact.</param>
-		protected abstract void EditCore(Contact oldContact, Contact newContact);
+        /// <summary>Edits a contact.</summary>
+        /// <param name="oldContact">The old contact.</param>
+        /// <param name="newContact">The new contact.</param>
+        protected abstract void EditCore(Contact oldContact, Contact newContact);
 
 		/// <summary>Finds a contact by name.</summary>
 		/// <param name="name">The name of the contact.</param>
@@ -87,6 +81,5 @@ namespace ContactManager
 		/// <summary>Gets all the contacts.</summary>
 		/// <returns>The list of contacts.</returns>
 		protected abstract void RemoveCore(string name);
-		#endregion
 	}
 }

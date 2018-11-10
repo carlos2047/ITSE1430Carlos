@@ -8,6 +8,9 @@ namespace ContactManager
 	/// <summary>Provides services for sending messages.</summary>
 	public interface IMessageService
 	{
-		void Send (string emailAddress, string subject, string message);
+		void Send (Message message);
+
+        IEnumerable<Message> GetAll();
+        
 	}
 }

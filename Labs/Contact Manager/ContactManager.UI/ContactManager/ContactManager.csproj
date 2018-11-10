@@ -46,9 +46,10 @@
     <Compile Include="ContactDatabase.cs" />
     <Compile Include="IContactDatabase.cs" />
     <Compile Include="IMessageService.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="MessageSendDatabase.cs" />
     <Compile Include="ObjectValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SeedDatabase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

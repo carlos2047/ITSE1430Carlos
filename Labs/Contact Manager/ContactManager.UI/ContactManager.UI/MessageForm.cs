@@ -1,7 +1,5 @@
-﻿// Cesar Estrada
-// November 5, 2018
-// ITSE 1430 MW 5pm
-// SendMessage.cs
+﻿// Carlos Fuentes
+// 11/4/2018
 
 using ContactManager.Memory;
 using System;
@@ -16,32 +14,40 @@ namespace ContactManager.UI
 			InitializeComponent();
 		}
 
-		public Contact Contact { get; internal set; }
-		public Message Message { get; private set; }
+		public Contact Contact { get; set; }
+		public Message Message { get; set; }
 
 		private void MessageForm_Load(object sender, EventArgs e)
-		{
-			_txtName.Text = Contact.Name;
-			_txtEmailAddress.Text = Contact.EmailAddress;
-		}
+        {
+            if (Contact != null)
+            {
+                _txtName.Text = Contact.Name;
+                _txtEmailAddress.Text = Contact.EmailAddress;
+            }
 
-		#region Event Handlers
+            if (Message != null)
+            {
+                _txtName.Text = Message.MessageName;
+                _txtEmailAddress.Text = Message.MessageEmailAddress;
+            }
 
-		private void OnSend_Click(object sender, EventArgs e)
+            ValidateChildren();
+        }
+
+        private void OnSend_Click(object sender, EventArgs e)
 		{
 			if (!ValidateChildren())
 				return;
 
-			//_txtEmailAddress.Text = Contact.EmailAddress; // you may not need
+            var message = new Message()
+            {
+                MessageName = _txtName.Text,
+                MessageEmailAddress = _txtEmailAddress.Text,
+                MessageSubject = _txtSubject.Text,
+                MessageContent = _txtMessage.Text,
+            };
 
-			var contact = new Contact()	{
-				Name = _txtName.Text,
-				EmailAddress = _txtMessage.Text,
-				Subject = _txtSubject.Text,
-				Message = _txtMessage.Text,				
-			};
-
-			var results = ObjectValidator.Validate(contact);
+            var results = ObjectValidator.Validate(message);
 			foreach (var result in results)
 			{
 				MessageBox.Show(this, result.ErrorMessage, "Validation Failed",
@@ -49,7 +55,7 @@ namespace ContactManager.UI
 				return;
 			};
 
-			Contact = contact;
+			Message = message;
 			DialogResult = DialogResult.OK;
 			Close();
 		}
@@ -59,8 +65,6 @@ namespace ContactManager.UI
 			DialogResult = DialogResult.Cancel;
 			Close();
 		}
-
-		#endregion
 
 		private void OnValidatingSubject(object sender, System.ComponentModel.CancelEventArgs e)
 		{
