@@ -140,5 +140,11 @@ namespace Nile.Windows
 
         private readonly IProductDatabase _database = new Nile.Stores.MemoryProductDatabase();
         #endregion
+
+        private void OnHelpAbout(object sender, EventArgs e)
+        {
+            MessageBox.Show(this, "Carlos Fuentes\n ITSE 1430",
+				"About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
