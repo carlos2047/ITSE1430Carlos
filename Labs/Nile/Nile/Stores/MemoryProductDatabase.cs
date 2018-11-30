@@ -1,6 +1,8 @@
-/*
- * ITSE 1430
- */
+// Carlos Fuentes
+// ITSE 1430
+// November 23, 2018
+// MemoryProductDatabase.cs
+
 using System;
 using System.Collections.Generic;
 

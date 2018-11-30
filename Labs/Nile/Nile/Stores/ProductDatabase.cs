@@ -1,6 +1,8 @@
-/*
- * ITSE 1430
- */
+// Carlos Fuentes
+// ITSE 1430
+// November 23, 2018
+// ProductDatabase.cs
+
 using System;
 using System.Collections.Generic;
 
@@ -14,9 +16,21 @@ namespace Nile.Stores
         /// <returns>The added product.</returns>
         public Product Add ( Product product )
         {
-            //TODO: Check arguments
+			//TODO: Check arguments
+			if (product == null)
+				throw new ArgumentNullException("product");
+			ObjectValidator.TryValidate(product);
 
-            //TODO: Validate product
+			//TODO: Validate product
+			try
+			{
+				//_database.Add(
+				AddCore(product);
+			}
+			catch (Exception e)
+			{
+				throw new Exception("Add failed", e);
+			};
 
             //Emulate database by storing copy
             return AddCore(product);
@@ -26,9 +40,12 @@ namespace Nile.Stores
         /// <returns>The product, if it exists.</returns>
         public Product Get ( int id )
         {
-            //TODO: Check arguments
+			//TODO: Check arguments
+			var existing = Get(id);
+			if (existing == null)
+				throw new ArgumentOutOfRangeException("id");
 
-            return GetCore(id);
+			return GetCore(id);
         }
         
         /// <summary>Gets all products.</summary>
@@ -42,9 +59,12 @@ namespace Nile.Stores
         /// <param name="id">The product to remove.</param>
         public void Remove ( int id )
         {
-            //TODO: Check arguments
-
-            RemoveCore(id);
+			//TODO: Check arguments
+			var existing = Get(id);
+			if (existing == null)
+				throw new ArgumentOutOfRangeException("id");
+			
+			RemoveCore(id);
         }
         
         /// <summary>Updates a product.</summary>
@@ -52,19 +72,36 @@ namespace Nile.Stores
         /// <returns>The updated product.</returns>
         public Product Update ( Product product )
         {
-            //TODO: Check arguments
+			//TODO: Check arguments
+			var exists = product.Name;
+			//if (product == null)
+			//	throw new ArgumentNullException("product");
+			//else 
+			if (exists != product.Name)
+				throw new ArgumentException("product");
 
-            //TODO: Validate product
+			ObjectValidator.TryValidate(product);
 
-            //Get existing product
-            var existing = GetCore(product.Id);
+			//TODO: Validate product
+			try
+			{
+				Update(product);      // double check this it may be UpdateCare(product); but it gave an error
+			}
+			catch (Exception e)
+			{
+				throw new Exception("Updated failed", e);
+			};
 
-            return UpdateCore(existing, product);
-        }
 
-        #region Protected Members
+			//Get existing product
+			var existing = GetCore(product.Id);
+			return UpdateCore(existing, product);
 
-        protected abstract Product GetCore( int id );
+		}
+		
+		#region Protected Members
+
+		protected abstract Product GetCore( int id );
 
         protected abstract IEnumerable<Product> GetAllCore();
 

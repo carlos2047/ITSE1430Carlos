@@ -1,3 +1,8 @@
+-- Carlos Fuentes
+-- ITSE 1430
+-- November 23, 2018
+-- InitializeProducts.PostDeployment.sql
+
 /*
 Post-Deployment Script Template							
 --------------------------------------------------------------------------------------

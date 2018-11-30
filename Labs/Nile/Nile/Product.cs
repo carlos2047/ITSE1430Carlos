@@ -1,13 +1,17 @@
-/*
- * ITSE 1430
- */
+// Carlos Fuentes
+// ITSE 1430
+// November 23, 2018
+// Products.cs
+
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Nile
 {
     /// <summary>Represents a product.</summary>
-    public class Product
-    {
+    public class Product : IValidatableObject
+	{
         /// <summary>Gets or sets the unique identifier.</summary>
         public int Id { get; set; }
 
@@ -37,9 +41,24 @@ namespace Nile
             return Name;
         }
 
-        #region Private Members
+		IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+		{
+			if (Id >= 0)
+				yield return new ValidationResult("Id Must be greater than or equal to zero.",
+								new[] { nameof(Id) });
 
-        private string _name;
+			if (String.IsNullOrEmpty(Name))
+				yield return new ValidationResult("Name is required.",
+								new[] { nameof(Name) });
+
+			if (Price >= 0)
+				yield return new ValidationResult("Id Must be greater than or equal to zero.",
+								new[] { nameof(Price) });
+		}
+
+		#region Private Members
+
+		private string _name;
         private string _description;
         #endregion
     }

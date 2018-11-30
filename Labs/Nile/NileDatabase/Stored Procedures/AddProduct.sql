@@ -1,3 +1,8 @@
+-- Carlos Fuentes
+-- ITSE 1430
+-- November 23, 2018
+-- AddProduct.sql
+
 CREATE PROCEDURE [dbo].[AddProduct]
 	@name NVARCHAR(100),
     @price MONEY,    

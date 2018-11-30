@@ -1,8 +1,12 @@
-/*
- * ITSE 1430
- */
+// Carlos Fuentes
+// ITSE 1430
+// November 23, 2018
+// MainForm.cs
+
+using Nile.Stores.Sql;
 using System;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace Nile.Windows
 {
@@ -20,8 +24,13 @@ namespace Nile.Windows
         {
             base.OnLoad(e);
 
-            _gridProducts.AutoGenerateColumns = false;
+			//var connString = ConfigurationManager
+			//					.ConnectionStrings["Database"]
+			//					.ConnectionString;
+			//_database = new NileSqlDatabase(connString);
 
+			_gridProducts.AutoGenerateColumns = true;
+			
             UpdateList();
         }
 
@@ -38,9 +47,16 @@ namespace Nile.Windows
             if (child.ShowDialog(this) != DialogResult.OK)
                 return;
 
-            //TODO: Handle errors
-            //Save product
-            _database.Add(child.Product);
+			//TODO: Handle errors
+			//Save product
+			try
+			{
+				_database.Add(child.Product);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			};
             UpdateList();
         }
 
@@ -104,9 +120,16 @@ namespace Nile.Windows
                                 "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
 
-            //TODO: Handle errors
-            //Delete product
-            _database.Remove(product.Id);
+			//TODO: Handle errors
+			//Delete product
+			try
+			{
+				_database.Remove(product.Id);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			};			
             UpdateList();
         }
 
@@ -117,9 +140,16 @@ namespace Nile.Windows
             if (child.ShowDialog(this) != DialogResult.OK)
                 return;
 
-            //TODO: Handle errors
-            //Save product
-            _database.Update(child.Product);
+			//TODO: Handle errors
+			//Save product
+			try
+			{
+				_database.Update(child.Product);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			};			
             UpdateList();
         }
 
@@ -133,18 +163,28 @@ namespace Nile.Windows
 
         private void UpdateList ()
         {
-            //TODO: Handle errors
-
-            _bsProducts.DataSource = _database.GetAll();
+			//TODO: Handle errors
+			try
+			{
+				_bsProducts.DataSource = _database.GetAll();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			};			
         }
 
-        private readonly IProductDatabase _database = new Nile.Stores.MemoryProductDatabase();
-        #endregion
+		private void OnHelpAbout_Click(object sender, EventArgs e)
+		{
+			var form = new AboutForm();
+			if (form.ShowDialog(this) == DialogResult.Cancel)
+				return;
+		}
 
-        private void OnHelpAbout(object sender, EventArgs e)
-        {
-            MessageBox.Show(this, "Carlos Fuentes\n ITSE 1430",
-				"About", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-    }
+		private readonly IProductDatabase _database = new Nile.Stores.MemoryProductDatabase();
+		//private IProductDatabase _database;
+		#endregion
+
+		
+	}
 }

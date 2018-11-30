@@ -1,5 +1,7 @@
 /*
- * ITSE 1430
+ Carlos Fuentes
+ ITSE 1430
+ November 23, 2018
  */
 using System;
 using System.ComponentModel;
