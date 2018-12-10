@@ -7,6 +7,7 @@ using Nile.Stores.Sql;
 using System;
 using System.Windows.Forms;
 using System.Configuration;
+using System.Linq;
 
 namespace Nile.Windows
 {
@@ -24,11 +25,6 @@ namespace Nile.Windows
         {
             base.OnLoad(e);
 
-			//var connString = ConfigurationManager
-			//					.ConnectionStrings["Database"]
-			//					.ConnectionString;
-			//_database = new NileSqlDatabase(connString);
-
 			_gridProducts.AutoGenerateColumns = true;
 			
             UpdateList();
@@ -41,23 +37,23 @@ namespace Nile.Windows
             Close();
         }
 
-        private void OnProductAdd( object sender, EventArgs e )
+        private void OnProductAdd(object sender, EventArgs e)
         {
             var child = new ProductDetailForm("Product Details");
             if (child.ShowDialog(this) != DialogResult.OK)
                 return;
 
-			//TODO: Handle errors
-			//Save product
-			try
-			{
-				_database.Add(child.Product);
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			};
-            UpdateList();
+            try
+            {
+
+                //Save product
+                _database.Add(child.Product);
+                UpdateList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK);
+            }
         }
 
         private void OnProductEdit( object sender, EventArgs e )
@@ -113,44 +109,44 @@ namespace Nile.Windows
 
         #region Private Members
 
-        private void DeleteProduct ( Product product )
+        private void DeleteProduct(Product product)
         {
             //Confirm
             if (MessageBox.Show(this, $"Are you sure you want to delete '{product.Name}'?",
                                 "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
 
-			//TODO: Handle errors
-			//Delete product
-			try
-			{
-				_database.Remove(product.Id);
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			};			
-            UpdateList();
+            try
+            {
+
+                //Delete product
+                _database.Remove(product.Id);
+                UpdateList();
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error");
+            }
         }
 
-        private void EditProduct ( Product product )
+        private void EditProduct(Product product)
         {
             var child = new ProductDetailForm("Product Details");
             child.Product = product;
             if (child.ShowDialog(this) != DialogResult.OK)
                 return;
 
-			//TODO: Handle errors
-			//Save product
-			try
-			{
-				_database.Update(child.Product);
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			};			
-            UpdateList();
+            try
+            {
+
+                //Save product
+                _database.Update(child.Product);
+                UpdateList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK);
+            }
         }
 
         private Product GetSelectedProduct ()
@@ -161,30 +157,29 @@ namespace Nile.Windows
             return null;
         }
 
-        private void UpdateList ()
+        private void UpdateList()
         {
-			//TODO: Handle errors
-			try
-			{
-				_bsProducts.DataSource = _database.GetAll();
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			};			
+            try
+            {
+                _bsProducts.DataSource = _database.GetAll().OrderBy(p => p.Name);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK);
+            }
         }
 
-		private void OnHelpAbout_Click(object sender, EventArgs e)
+        private void OnHelpAbout_Click(object sender, EventArgs e)
 		{
 			var form = new AboutForm();
 			if (form.ShowDialog(this) == DialogResult.Cancel)
 				return;
 		}
 
-		private readonly IProductDatabase _database = new Nile.Stores.MemoryProductDatabase();
-		//private IProductDatabase _database;
-		#endregion
+        private readonly IProductDatabase _database = new Nile.Stores.Sql.NileSqlDatabase(ConfigurationManager.ConnectionStrings["ProductDatabase"].ConnectionString);
 
-		
-	}
+        #endregion
+
+
+    }
 }
